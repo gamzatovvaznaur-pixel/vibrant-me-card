@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
-import { GraduationCap, CheckCircle, MessageCircle, Star, ArrowRight, BookOpen, Users, Target, Clock, Phone } from "lucide-react";
+import { GraduationCap, CheckCircle, MessageCircle, Star, ArrowRight, BookOpen, Users, Target, Clock, Phone, Building2, Award, MapPin } from "lucide-react";
 import aznaur from "@/assets/aznaur-portrait.jpg";
+import mgsu1 from "@/assets/mgsu-campus-1.jpg";
+import mgsu2 from "@/assets/mgsu-campus-2.jpg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -101,7 +103,7 @@ const Index = () => {
       </motion.nav>
 
       {/* Hero */}
-      <section className="pt-28 pb-20 px-5">
+      <section className="min-h-screen flex items-center pt-20 pb-20 px-5">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <motion.div
@@ -204,6 +206,68 @@ const Index = () => {
                 </div>
                 <h3 className="font-display font-bold text-lg mb-2">{a.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{a.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* About University */}
+      <section className="py-20 px-5">
+        <div className="max-w-6xl mx-auto">
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-14">
+            <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">Университет</p>
+            <h2 className="font-display text-3xl md:text-4xl font-bold">НИУ МГСУ — главный строительный вуз страны</h2>
+            <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
+              Московский государственный строительный университет — один из ведущих технических вузов России 
+              с более чем 100-летней историей
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-6 mb-14">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="overflow-hidden rounded-2xl"
+            >
+              <img src={mgsu1} alt="Кампус МГСУ" className="w-full h-72 md:h-96 object-cover hover:scale-105 transition-transform duration-700" loading="lazy" />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.15 }}
+              className="overflow-hidden rounded-2xl"
+            >
+              <img src={mgsu2} alt="Территория МГСУ" className="w-full h-72 md:h-96 object-cover hover:scale-105 transition-transform duration-700" loading="lazy" />
+            </motion.div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { icon: Building2, title: "Топ-5 технических вузов", desc: "МГСУ стабильно входит в пятёрку лучших инженерных университетов России по рейтингам RAEX и QS" },
+              { icon: Award, title: "100+ лет истории", desc: "Основан в 1921 году. За это время подготовлены десятки тысяч инженеров, построивших современную Россию" },
+              { icon: MapPin, title: "Кампус в Москве", desc: "Современный кампус с лабораториями, спортивными комплексами, общежитиями и всей инфраструктурой для жизни и учёбы" },
+              { icon: Users, title: "20 000+ студентов", desc: "Одно из крупнейших сообществ будущих строителей, архитекторов и инженеров в стране" },
+              { icon: BookOpen, title: "30+ направлений", desc: "От промышленного и гражданского строительства до IT, экологии, архитектуры и управления недвижимостью" },
+              { icon: Target, title: "95% трудоустройство", desc: "Выпускники МГСУ востребованы по всей России — в крупных строительных компаниях, проектных бюро и госструктурах" },
+            ].map((item, i) => (
+              <motion.div
+                key={item.title}
+                custom={i}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="bg-card border border-border rounded-2xl p-6 hover:border-primary/30 transition-colors"
+              >
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                  <item.icon className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="font-display font-bold text-lg mb-2">{item.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </div>
