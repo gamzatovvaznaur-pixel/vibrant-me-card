@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
-import { GraduationCap, CheckCircle, MessageCircle, Star, ArrowRight, BookOpen, Users, Target, Clock, Phone } from "lucide-react";
+import { GraduationCap, CheckCircle, MessageCircle, Star, ArrowRight, BookOpen, Users, Target, Clock, Phone, Building2, Award, MapPin } from "lucide-react";
 import aznaur from "@/assets/aznaur-portrait.jpg";
+import mgsu1 from "@/assets/mgsu-campus-1.jpg";
+import mgsu2 from "@/assets/mgsu-campus-2.jpg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
