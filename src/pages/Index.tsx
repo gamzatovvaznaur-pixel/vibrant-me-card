@@ -103,7 +103,7 @@ const Index = () => {
       </motion.nav>
 
       {/* Hero */}
-      <section className="pt-28 pb-20 px-5">
+      <section className="min-h-screen flex items-center pt-20 pb-20 px-5">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <motion.div
