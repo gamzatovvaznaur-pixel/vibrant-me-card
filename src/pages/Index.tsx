@@ -1,8 +1,13 @@
 import { motion } from "framer-motion";
-import { GraduationCap, CheckCircle, MessageCircle, Star, ArrowRight, BookOpen, Users, Target, Clock, Phone, Building2, Award, MapPin } from "lucide-react";
-import aznaur from "@/assets/aznaur-portrait.jpg";
-import mgsu1 from "@/assets/mgsu-campus-1.jpg";
-import mgsu2 from "@/assets/mgsu-campus-2.jpg";
+import {
+  GraduationCap, CheckCircle, MessageCircle, Star, ArrowRight,
+  BookOpen, Users, Target, Clock, Phone, Building2, Award, MapPin,
+  AlertTriangle, FileText, Shield, Lightbulb
+} from "lucide-react";
+import aznaur1 from "@/assets/aznaur-photo-1.jpg";
+import aznaur2 from "@/assets/aznaur-photo-2.jpg";
+import mgsuCampus from "@/assets/mgsu-campus-wiki.jpg";
+import mgsuBuilding from "@/assets/mgsu-building.jpg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -25,7 +30,6 @@ const plans = [
       "Рекомендации по подготовке",
     ],
     popular: false,
-    accent: false,
   },
   {
     title: "Полное сопровождение",
@@ -40,7 +44,6 @@ const plans = [
       "Чат для вопросов 24/7",
     ],
     popular: true,
-    accent: false,
   },
   {
     title: "VIP-наставничество",
@@ -55,19 +58,41 @@ const plans = [
       "3 месяца менторства после поступления",
     ],
     popular: false,
-    accent: true,
   },
 ];
 
-const advantages = [
-  { icon: BookOpen, title: "Знаю изнутри", desc: "Я сам прошёл через поступление и знаю все подводные камни" },
-  { icon: Target, title: "Точные советы", desc: "Только актуальная информация, никакой воды из интернета" },
-  { icon: Users, title: "Личный подход", desc: "Разбираю каждую ситуацию индивидуально, без шаблонов" },
-  { icon: Clock, title: "На связи", desc: "Отвечаю быстро и всегда готов помочь в чате" },
+const dangers = [
+  {
+    icon: FileText,
+    title: "Неверно заполненное заявление",
+    desc: "Одна ошибка в документах — и ваша заявка может быть отклонена. Я знаю, на что обращать внимание.",
+  },
+  {
+    icon: AlertTriangle,
+    title: "Сюрпризы с аттестатами",
+    desc: "Не все знают о подводных камнях с оригиналами аттестатов. Расскажу, как избежать проблем.",
+  },
+  {
+    icon: Shield,
+    title: "Юридические нюансы",
+    desc: "Есть моменты, о которых молчат в приёмной комиссии. Я предупрежу вас заранее.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Разница между направлениями",
+    desc: "В буклетах всё выглядит одинаково. Но реальная разница огромна — и я знаю её изнутри.",
+  },
+];
+
+const whatYouGet = [
+  "Честный разбор процедуры поступления шаг за шагом",
+  "Опыт человека с 290 баллами ЕГЭ, выбиравшего между ВШЭ, Финансовой академией и МГСУ",
+  "Инсайды о факультетах от того, кто общается со студентами каждого из них",
+  "Предупреждение о типичных ошибках, которые превращают поступление в хаос",
 ];
 
 const steps = [
-  { num: "01", title: "Оставьте заявку", desc: "Напишите мне в Telegram или заполните форму" },
+  { num: "01", title: "Оставьте заявку", desc: "Напишите мне в Telegram или позвоните" },
   { num: "02", title: "Бесплатный созвон", desc: "Обсудим вашу ситуацию и подберём план" },
   { num: "03", title: "Работаем вместе", desc: "Следуем стратегии и готовимся к поступлению" },
   { num: "04", title: "Вы в МГСУ!", desc: "Поздравляю — вы студент лучшего строительного вуза" },
@@ -89,8 +114,9 @@ const Index = () => {
             <span className="font-display font-bold text-lg">ПоступиВМГСУ</span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
-            <a href="#services" className="hover:text-foreground transition-colors">Услуги</a>
             <a href="#about" className="hover:text-foreground transition-colors">Обо мне</a>
+            <a href="#university" className="hover:text-foreground transition-colors">О МГСУ</a>
+            <a href="#services" className="hover:text-foreground transition-colors">Услуги</a>
             <a href="#how" className="hover:text-foreground transition-colors">Как это работает</a>
           </div>
           <a
@@ -102,33 +128,33 @@ const Index = () => {
         </div>
       </motion.nav>
 
-      {/* Hero */}
+      {/* Hero — 100vh */}
       <section className="min-h-screen flex items-center pt-20 pb-20 px-5">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center w-full">
           <div>
             <motion.div
               custom={0} variants={fadeUp} initial="hidden" animate="visible"
               className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6"
             >
               <Star className="w-4 h-4" />
-              Набор 2026 уже открыт
+              290 баллов ЕГЭ · Выбор между ВШЭ, ФА и МГСУ
             </motion.div>
             <motion.h1
               custom={1} variants={fadeUp} initial="hidden" animate="visible"
-              className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] mb-6"
+              className="font-display text-3xl md:text-4xl lg:text-[3.2rem] font-extrabold leading-[1.1] mb-6"
             >
-              Поступи в{" "}
+              Поступление в{" "}
               <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--gradient-hero)" }}>
                 МГСУ
               </span>
-              {" "}без стресса
+              : на что реально обратить внимание?
             </motion.h1>
             <motion.p
               custom={2} variants={fadeUp} initial="hidden" animate="visible"
               className="text-muted-foreground text-lg leading-relaxed max-w-lg mb-8"
             >
-              Я — Азнаур Гамзатов, студент МГСУ. Помогу тебе разобраться в поступлении, 
-              выбрать направление и пройти весь путь от заявки до зачисления.
+              Расскажу как студент 3-го курса с 290 баллами ЕГЭ и осознанным выбором 
+              МГСУ вместо ВШЭ и Финансовой академии при Президенте.
             </motion.p>
             <motion.div
               custom={3} variants={fadeUp} initial="hidden" animate="visible"
@@ -158,7 +184,7 @@ const Index = () => {
                 <CheckCircle className="w-4 h-4 text-accent" /> 50+ поступивших
               </span>
               <span className="flex items-center gap-1.5">
-                <CheckCircle className="w-4 h-4 text-accent" /> Личный опыт
+                <CheckCircle className="w-4 h-4 text-accent" /> 3 курс МГСУ
               </span>
             </motion.div>
           </div>
@@ -172,10 +198,8 @@ const Index = () => {
             <div className="relative">
               <div className="absolute -inset-4 rounded-3xl opacity-20" style={{ backgroundImage: "var(--gradient-hero)" }} />
               <img
-                src={aznaur}
+                src={aznaur1}
                 alt="Азнаур Гамзатов"
-                width={640}
-                height={800}
                 className="relative w-full max-w-md rounded-2xl object-cover shadow-2xl"
               />
             </div>
@@ -183,29 +207,124 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Advantages */}
-      <section className="py-20 px-5 bg-card">
+      {/* About */}
+      <section id="about" className="py-20 px-5 bg-card">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+            <img
+              src={aznaur2}
+              alt="Азнаур Гамзатов"
+              loading="lazy"
+              className="rounded-2xl object-cover w-full max-w-sm mx-auto shadow-xl"
+            />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+            <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">Обо мне</p>
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">Азнаур Гамзатов</h2>
+            <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <p>
+                Меня зовут Азнаур Гамзатов, я студент 3-го курса{" "}
+                <strong className="text-foreground">Московского государственного строительного университета (МГСУ)</strong>, 
+                факультет УКСН.
+              </p>
+              <p>
+                Три года назад я сдал ЕГЭ на <strong className="text-foreground">290 баллов</strong> и поступил. 
+                Но самое интересное не это. У меня был реальный выбор: меня приняли в{" "}
+                <strong className="text-foreground">Высшую школу экономики</strong> и в{" "}
+                <strong className="text-foreground">Финансовую академию при Президенте</strong>. 
+                И я сознательно выбрал МГСУ.
+              </p>
+              <p>
+                Сейчас я хорошо знаю университет изнутри. У нас очень много факультетов, 
+                и каждый отличается своей спецификой. Я лично знаком с ребятами с разных факультетов, 
+                поэтому понимаю, где реально низкий проходной балл, а где — неочевидные сложности.
+              </p>
+            </div>
+            <div className="flex gap-8 mt-8">
+              <div>
+                <div className="font-display font-extrabold text-2xl text-primary">290</div>
+                <div className="text-xs text-muted-foreground mt-1">Баллов ЕГЭ</div>
+              </div>
+              <div>
+                <div className="font-display font-extrabold text-2xl text-primary">3-й</div>
+                <div className="text-xs text-muted-foreground mt-1">Курс МГСУ</div>
+              </div>
+              <div>
+                <div className="font-display font-extrabold text-2xl text-primary">50+</div>
+                <div className="text-xs text-muted-foreground mt-1">Поступивших</div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Dangers / Nuances */}
+      <section className="py-20 px-5">
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-14">
-            <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">Преимущества</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold">Почему стоит обратиться ко мне</h2>
+            <p className="text-destructive font-semibold text-sm mb-2 tracking-wide uppercase">Внимание</p>
+            <h2 className="font-display text-3xl md:text-4xl font-bold">
+              «Опасности» поступления, о которых не говорят
+            </h2>
+            <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
+              На первый взгляд поступление в МГСУ может показаться простым. Но это обманчиво. 
+              Есть нюансы, которые обязательно изучить до подачи документов.
+            </p>
           </motion.div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {advantages.map((a, i) => (
+          <div className="grid sm:grid-cols-2 gap-6">
+            {dangers.map((d, i) => (
               <motion.div
-                key={a.title}
+                key={d.title}
                 custom={i}
                 variants={fadeUp}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="bg-background rounded-2xl p-6 border border-border hover:border-primary/30 transition-colors"
+                className="bg-card rounded-2xl p-6 border border-border hover:border-destructive/30 transition-colors"
               >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                  <a.icon className="w-6 h-6 text-primary" />
+                <div className="w-12 h-12 rounded-xl bg-destructive/10 flex items-center justify-center mb-4">
+                  <d.icon className="w-6 h-6 text-destructive" />
                 </div>
-                <h3 className="font-display font-bold text-lg mb-2">{a.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{a.desc}</p>
+                <h3 className="font-display font-bold text-lg mb-2">{d.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{d.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* What you get */}
+      <section className="py-20 px-5 bg-card">
+        <div className="max-w-4xl mx-auto">
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-14">
+            <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">Результат</p>
+            <h2 className="font-display text-3xl md:text-4xl font-bold">Что вы получите на консультации</h2>
+          </motion.div>
+          <div className="space-y-5">
+            {whatYouGet.map((item, i) => (
+              <motion.div
+                key={i}
+                custom={i}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="flex items-start gap-4 bg-background rounded-2xl p-5 border border-border"
+              >
+                <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <CheckCircle className="w-5 h-5 text-accent" />
+                </div>
+                <p className="text-foreground font-medium leading-relaxed">{item}</p>
               </motion.div>
             ))}
           </div>
@@ -213,7 +332,7 @@ const Index = () => {
       </section>
 
       {/* About University */}
-      <section className="py-20 px-5">
+      <section id="university" className="py-20 px-5">
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-14">
             <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">Университет</p>
@@ -232,7 +351,7 @@ const Index = () => {
               transition={{ duration: 0.7 }}
               className="overflow-hidden rounded-2xl"
             >
-              <img src={mgsu1} alt="Кампус МГСУ" className="w-full h-72 md:h-96 object-cover hover:scale-105 transition-transform duration-700" loading="lazy" />
+              <img src={mgsuCampus} alt="Кампус МГСУ" className="w-full h-72 md:h-96 object-cover hover:scale-105 transition-transform duration-700" loading="lazy" />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -241,18 +360,18 @@ const Index = () => {
               transition={{ duration: 0.7, delay: 0.15 }}
               className="overflow-hidden rounded-2xl"
             >
-              <img src={mgsu2} alt="Территория МГСУ" className="w-full h-72 md:h-96 object-cover hover:scale-105 transition-transform duration-700" loading="lazy" />
+              <img src={mgsuBuilding} alt="Здание МГСУ" className="w-full h-72 md:h-96 object-cover hover:scale-105 transition-transform duration-700" loading="lazy" />
             </motion.div>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { icon: Building2, title: "Топ-5 технических вузов", desc: "МГСУ стабильно входит в пятёрку лучших инженерных университетов России по рейтингам RAEX и QS" },
-              { icon: Award, title: "100+ лет истории", desc: "Основан в 1921 году. За это время подготовлены десятки тысяч инженеров, построивших современную Россию" },
-              { icon: MapPin, title: "Кампус в Москве", desc: "Современный кампус с лабораториями, спортивными комплексами, общежитиями и всей инфраструктурой для жизни и учёбы" },
-              { icon: Users, title: "20 000+ студентов", desc: "Одно из крупнейших сообществ будущих строителей, архитекторов и инженеров в стране" },
-              { icon: BookOpen, title: "30+ направлений", desc: "От промышленного и гражданского строительства до IT, экологии, архитектуры и управления недвижимостью" },
-              { icon: Target, title: "95% трудоустройство", desc: "Выпускники МГСУ востребованы по всей России — в крупных строительных компаниях, проектных бюро и госструктурах" },
+              { icon: Building2, title: "Топ-5 технических вузов", desc: "МГСУ стабильно входит в пятёрку лучших инженерных университетов России" },
+              { icon: Award, title: "100+ лет истории", desc: "Основан в 1921 году. За это время подготовлены десятки тысяч инженеров" },
+              { icon: MapPin, title: "Кампус в Москве", desc: "Современный кампус с лабораториями, спортивными комплексами и общежитиями" },
+              { icon: Users, title: "20 000+ студентов", desc: "Одно из крупнейших сообществ будущих строителей, архитекторов и инженеров" },
+              { icon: BookOpen, title: "30+ направлений", desc: "От строительства до IT, экологии, архитектуры и управления недвижимостью" },
+              { icon: Target, title: "95% трудоустройство", desc: "Выпускники востребованы в крупных строительных компаниях и госструктурах" },
             ].map((item, i) => (
               <motion.div
                 key={item.title}
@@ -275,7 +394,7 @@ const Index = () => {
       </section>
 
       {/* Services / Pricing */}
-      <section id="services" className="py-20 px-5">
+      <section id="services" className="py-20 px-5 bg-card">
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-14">
             <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">Тарифы</p>
@@ -296,8 +415,8 @@ const Index = () => {
                 viewport={{ once: true }}
                 className={`relative rounded-2xl p-7 border flex flex-col ${
                   plan.popular
-                    ? "border-primary shadow-xl shadow-primary/10 scale-[1.02]"
-                    : "border-border bg-card"
+                    ? "border-primary shadow-xl shadow-primary/10 scale-[1.02] bg-background"
+                    : "border-border bg-background"
                 }`}
               >
                 {plan.popular && (
@@ -329,65 +448,6 @@ const Index = () => {
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* About */}
-      <section id="about" className="py-20 px-5 bg-card">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <img
-              src={aznaur}
-              alt="Азнаур Гамзатов"
-              width={640}
-              height={800}
-              loading="lazy"
-              className="rounded-2xl object-cover w-full max-w-sm mx-auto shadow-xl"
-            />
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">Обо мне</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">Азнаур Гамзатов</h2>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>
-                Привет! Я студент <strong className="text-foreground">НИУ МГСУ</strong> — главного строительного 
-                университета страны. Когда я сам поступал, столкнулся с кучей вопросов: какое направление выбрать, 
-                как правильно подать документы, на что обратить внимание.
-              </p>
-              <p>
-                Сейчас я помогаю абитуриентам пройти этот путь проще и увереннее. Я знаю, как устроен 
-                приёмный процесс изнутри, какие направления востребованы и как выделиться среди конкурентов.
-              </p>
-              <p>
-                Моя цель — чтобы каждый, кто мечтает учиться в МГСУ, получил чёткий план действий 
-                и поддержку на каждом этапе.
-              </p>
-            </div>
-            <div className="flex gap-8 mt-8">
-              <div>
-                <div className="font-display font-extrabold text-2xl text-primary">50+</div>
-                <div className="text-xs text-muted-foreground mt-1">Поступивших</div>
-              </div>
-              <div>
-                <div className="font-display font-extrabold text-2xl text-primary">98%</div>
-                <div className="text-xs text-muted-foreground mt-1">Довольных</div>
-              </div>
-              <div>
-                <div className="font-display font-extrabold text-2xl text-primary">2+</div>
-                <div className="text-xs text-muted-foreground mt-1">Года опыта</div>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </section>
 
@@ -433,8 +493,12 @@ const Index = () => {
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
             Готов поступить в МГСУ?
           </h2>
-          <p className="text-primary-foreground/80 mb-8 max-w-md mx-auto">
-            Напиши мне — обсудим твою ситуацию и составим план действий. Первая консультация бесплатно!
+          <p className="text-primary-foreground/80 mb-4 max-w-md mx-auto">
+            Записывайтесь. Я расскажу вам то, что не пишут в официальных брошюрах 
+            и о чём молчат на днях открытых дверей.
+          </p>
+          <p className="text-primary-foreground/60 text-sm mb-8 max-w-md mx-auto">
+            Первая консультация — бесплатно!
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
