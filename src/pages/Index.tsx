@@ -221,7 +221,7 @@ const Index = () => {
             <a href="#achievements" className="hover:text-foreground transition-colors">Достижения</a>
             <a href="#university" className="hover:text-foreground transition-colors">О МГСУ</a>
             <a href="#services" className="hover:text-foreground transition-colors">Услуги</a>
-            <a href="#how" className="hover:text-foreground transition-colors">Как это работает</a>
+            
           </div>
           <a
             href="#contact"
