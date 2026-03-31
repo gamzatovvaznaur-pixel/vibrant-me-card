@@ -107,23 +107,33 @@ const plans = [
 const dangers = [
   {
     icon: FileText,
-    title: "Неверно заполненное заявление",
-    desc: "Одна ошибка в документах — и ваша заявка может быть отклонена. Я знаю, на что обращать внимание.",
+    title: "Ошибки в заявлении",
+    desc: "Одна опечатка — и заявку могут отклонить без объяснений.",
   },
   {
     icon: AlertTriangle,
-    title: "Сюрпризы с аттестатами",
-    desc: "Не все знают о подводных камнях с оригиналами аттестатов. Расскажу, как избежать проблем.",
+    title: "Ловушка с аттестатом",
+    desc: "Оригинал подали не туда? Можно потерять бюджетное место.",
   },
   {
     icon: Shield,
     title: "Юридические нюансы",
-    desc: "Есть моменты, о которых молчат в приёмной комиссии. Я предупрежу вас заранее.",
+    desc: "Приёмная комиссия не расскажет о правилах, которые работают против вас.",
   },
   {
     icon: Lightbulb,
-    title: "Разница между направлениями",
-    desc: "В буклетах всё выглядит одинаково. Но реальная разница огромна — и я знаю её изнутри.",
+    title: "Факультеты «не те»",
+    desc: "В буклетах всё красиво, а реальность сильно отличается.",
+  },
+  {
+    icon: Clock,
+    title: "Упущенные сроки",
+    desc: "Подача документов, согласие на зачисление — у каждого этапа жёсткий дедлайн.",
+  },
+  {
+    icon: Users,
+    title: "Конкурс не там, где ждали",
+    desc: "На «лёгкое» направление конкурс может быть выше, чем на престижное.",
   },
 ];
 
@@ -134,12 +144,6 @@ const whatYouGet = [
   "Предупреждение о типичных ошибках, которые превращают поступление в хаос",
 ];
 
-const steps = [
-  { num: "01", title: "Оставьте заявку", desc: "Заполните форму или напишите в Telegram" },
-  { num: "02", title: "Обсуждаем детали", desc: "Обсудим вашу ситуацию и подберём план" },
-  { num: "03", title: "Работаем вместе", desc: "Следуем стратегии и готовимся к поступлению" },
-  { num: "04", title: "Вы в МГСУ!", desc: "Поздравляю — вы студент лучшего строительного вуза" },
-];
 
 const FORMSPREE_URL = "https://formspree.io/f/xzdkrlwj";
 const TG_LINK = "https://t.me/gam1za";
@@ -174,32 +178,12 @@ const ContactForm = ({ dark = false }: { dark?: boolean }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-full max-w-md mx-auto">
-      <input
-        name="name"
-        required
-        placeholder="Ваше имя"
-        className={`px-4 py-3 rounded-xl text-sm border outline-none focus:ring-2 focus:ring-primary ${
-          dark
-            ? "bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
-            : "bg-background border-border text-foreground placeholder:text-muted-foreground"
-        }`}
-      />
+    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 w-full max-w-md mx-auto">
       <input
         name="phone"
         required
         placeholder="Телефон или Telegram"
-        className={`px-4 py-3 rounded-xl text-sm border outline-none focus:ring-2 focus:ring-primary ${
-          dark
-            ? "bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
-            : "bg-background border-border text-foreground placeholder:text-muted-foreground"
-        }`}
-      />
-      <textarea
-        name="message"
-        rows={2}
-        placeholder="Вопрос или комментарий (необязательно)"
-        className={`px-4 py-3 rounded-xl text-sm border outline-none focus:ring-2 focus:ring-primary resize-none ${
+        className={`flex-1 px-4 py-3 rounded-xl text-sm border outline-none focus:ring-2 focus:ring-primary ${
           dark
             ? "bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
             : "bg-background border-border text-foreground placeholder:text-muted-foreground"
@@ -241,7 +225,7 @@ const Index = () => {
             <a href="#achievements" className="hover:text-foreground transition-colors">Достижения</a>
             <a href="#university" className="hover:text-foreground transition-colors">О МГСУ</a>
             <a href="#services" className="hover:text-foreground transition-colors">Услуги</a>
-            <a href="#how" className="hover:text-foreground transition-colors">Как это работает</a>
+            
           </div>
           <a
             href="#contact"
@@ -480,7 +464,7 @@ const Index = () => {
               Есть нюансы, которые обязательно изучить до подачи документов.
             </p>
           </motion.div>
-          <div className="grid sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
             {dangers.map((d, i) => (
               <motion.div
                 key={d.title}
@@ -489,13 +473,13 @@ const Index = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="bg-card rounded-2xl p-6 border border-border hover:border-destructive/30 transition-colors"
+                className="bg-card rounded-xl md:rounded-2xl p-4 md:p-6 border border-border hover:border-destructive/30 transition-colors"
               >
-                <div className="w-12 h-12 rounded-xl bg-destructive/10 flex items-center justify-center mb-4">
-                  <d.icon className="w-6 h-6 text-destructive" />
+                <div className="w-9 h-9 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-destructive/10 flex items-center justify-center mb-2 md:mb-4">
+                  <d.icon className="w-4 h-4 md:w-6 md:h-6 text-destructive" />
                 </div>
-                <h3 className="font-display font-bold text-lg mb-2">{d.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{d.desc}</p>
+                <h3 className="font-display font-bold text-xs md:text-lg mb-1 md:mb-2">{d.title}</h3>
+                <p className="text-[11px] md:text-sm text-muted-foreground leading-relaxed">{d.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -664,35 +648,6 @@ const Index = () => {
                 >
                   Выбрать
                 </a>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section id="how" className="py-20 px-5 bg-card">
-        <div className="max-w-4xl mx-auto">
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-14">
-            <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">Процесс</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold">Как это работает</h2>
-          </motion.div>
-          <div className="grid sm:grid-cols-2 gap-6">
-            {steps.map((s, i) => (
-              <motion.div
-                key={s.num}
-                custom={i}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="bg-background border border-border rounded-2xl p-6 flex gap-5"
-              >
-                <div className="font-display font-extrabold text-4xl text-primary/20">{s.num}</div>
-                <div>
-                  <h3 className="font-display font-bold text-lg mb-1">{s.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
-                </div>
               </motion.div>
             ))}
           </div>
