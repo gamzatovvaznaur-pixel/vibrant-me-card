@@ -710,7 +710,8 @@ const Index = () => {
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Desktop grid */}
+          <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {achievements.map((a, i) => {
               const Wrapper = a.pdf ? motion.a : motion.div;
               const linkProps = a.pdf ? { href: a.pdf, target: "_blank", rel: "noopener noreferrer" } : {};
@@ -752,6 +753,43 @@ const Index = () => {
                     </h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">{a.description}</p>
                   </div>
+                </Wrapper>
+              );
+            })}
+          </div>
+
+          {/* Mobile compact list */}
+          <div className="sm:hidden space-y-3">
+            {achievements.map((a, i) => {
+              const Wrapper = a.pdf ? motion.a : motion.div;
+              const linkProps = a.pdf ? { href: a.pdf, target: "_blank", rel: "noopener noreferrer" } : {};
+              return (
+                <Wrapper
+                  key={a.title}
+                  {...linkProps}
+                  custom={i}
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  className="group flex items-center gap-3 bg-card rounded-xl border border-border p-3 hover:border-primary/40 transition-colors"
+                >
+                  <img
+                    src={a.image}
+                    alt={a.title}
+                    loading="lazy"
+                    className="w-14 h-14 rounded-lg object-cover object-top shrink-0"
+                  />
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${a.badgeColor}`}>
+                        {a.badge}
+                      </span>
+                    </div>
+                    <h3 className="font-display font-bold text-sm truncate">{a.title}</h3>
+                    <p className="text-xs text-muted-foreground line-clamp-1">{a.description}</p>
+                  </div>
+                  {a.pdf && <ExternalLink className="w-4 h-4 text-muted-foreground shrink-0" />}
                 </Wrapper>
               );
             })}
