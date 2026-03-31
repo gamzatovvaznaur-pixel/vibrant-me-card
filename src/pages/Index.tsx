@@ -14,6 +14,7 @@ import docDiplomaBp from "@/assets/doc-diploma-bp.jpg";
 import docBst from "@/assets/doc-bst.jpg";
 import docRecDu from "@/assets/doc-rec-du.jpg";
 import docRecCb from "@/assets/doc-rec-cb.jpg";
+import docEge from "@/assets/doc-ege-results.png";
 
 const achievements = [
   {
@@ -55,6 +56,13 @@ const achievements = [
     description: "Положительная характеристика по итогам производственной практики в Центральном банке Российской Федерации.",
     badge: "Практика",
     badgeColor: "bg-emerald-500/10 text-emerald-600",
+  },
+  {
+    image: docEge,
+    title: "Результаты ЕГЭ 2024",
+    description: "Русский язык — 100 баллов, Математика профильная — 90 баллов. Высокие баллы, подтверждающие уровень подготовки.",
+    badge: "ЕГЭ",
+    badgeColor: "bg-blue-500/10 text-blue-600",
   },
 ];
 
@@ -386,63 +394,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Achievements */}
-      <section id="achievements" className="py-20 px-5">
-        <div className="max-w-6xl mx-auto">
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-14">
-            <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">Подтверждено</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold">Мои достижения</h2>
-            <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
-              Результаты, которые подтверждают мою экспертизу — от аттестата с отличием до научных публикаций и практик в крупнейших организациях
-            </p>
-          </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {achievements.map((a, i) => (
-              <motion.a
-                key={a.title}
-                href={a.pdf}
-                target="_blank"
-                rel="noopener noreferrer"
-                custom={i}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="group bg-card rounded-2xl border border-border overflow-hidden hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300"
-              >
-                <div className="relative overflow-hidden bg-muted">
-                  <img
-                    src={a.image}
-                    alt={a.title}
-                    loading="lazy"
-                    className="w-full h-52 object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
-                    <span className="inline-flex items-center gap-1.5 bg-primary-foreground/90 text-foreground text-xs font-semibold px-3 py-1.5 rounded-full">
-                      <ExternalLink className="w-3 h-3" />
-                      Открыть документ
-                    </span>
-                  </div>
-                </div>
-                <div className="p-5">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className={`text-[11px] font-bold px-2.5 py-1 rounded-full ${a.badgeColor}`}>
-                      {a.badge}
-                    </span>
-                  </div>
-                  <h3 className="font-display font-bold text-base mb-2 group-hover:text-primary transition-colors">
-                    {a.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{a.description}</p>
-                </div>
-              </motion.a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Dangers / Nuances */}
       <section className="py-20 px-5">
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-14">
@@ -670,6 +622,66 @@ const Index = () => {
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Achievements */}
+      <section id="achievements" className="py-20 px-5">
+        <div className="max-w-6xl mx-auto">
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-14">
+            <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">Подтверждено</p>
+            <h2 className="font-display text-3xl md:text-4xl font-bold">Мои достижения</h2>
+            <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
+              Результаты, которые подтверждают мою экспертизу — от аттестата с отличием до научных публикаций и практик в крупнейших организациях
+            </p>
+          </motion.div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {achievements.map((a, i) => {
+              const Wrapper = a.pdf ? motion.a : motion.div;
+              const linkProps = a.pdf ? { href: a.pdf, target: "_blank", rel: "noopener noreferrer" } : {};
+              return (
+                <Wrapper
+                  key={a.title}
+                  {...linkProps}
+                  custom={i}
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  className="group bg-card rounded-2xl border border-border overflow-hidden hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300"
+                >
+                  <div className="relative overflow-hidden bg-muted">
+                    <img
+                      src={a.image}
+                      alt={a.title}
+                      loading="lazy"
+                      className="w-full h-52 object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    />
+                    {a.pdf && (
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                        <span className="inline-flex items-center gap-1.5 bg-primary-foreground/90 text-foreground text-xs font-semibold px-3 py-1.5 rounded-full">
+                          <ExternalLink className="w-3 h-3" />
+                          Открыть документ
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-5">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className={`text-[11px] font-bold px-2.5 py-1 rounded-full ${a.badgeColor}`}>
+                        {a.badge}
+                      </span>
+                    </div>
+                    <h3 className="font-display font-bold text-base mb-2 group-hover:text-primary transition-colors">
+                      {a.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{a.description}</p>
+                  </div>
+                </Wrapper>
+              );
+            })}
           </div>
         </div>
       </section>
