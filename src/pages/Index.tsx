@@ -267,11 +267,11 @@ const Index = () => {
               custom={1} variants={fadeUp} initial="hidden" animate="visible"
               className="font-display text-3xl md:text-4xl lg:text-[3.2rem] font-extrabold leading-[1.25] mb-6"
             >
-              Поступление в{" "}
+              Поступи в{" "}
               <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--gradient-hero)" }}>
                 МГСУ
               </span>
-              : на что реально обратить внимание?
+              {" "}без ошибок — консультация от студента с 290 баллами
             </motion.h1>
             <motion.p
               custom={2} variants={fadeUp} initial="hidden" animate="visible"
@@ -329,6 +329,79 @@ const Index = () => {
                 className="relative w-full max-w-md rounded-2xl object-cover shadow-2xl"
               />
             </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Quick Summary — What I Offer */}
+      <section className="py-16 md:py-20 px-5 bg-card border-b border-border">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-10"
+          >
+            <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">О консультации</p>
+            <h2 className="font-display text-2xl md:text-3xl font-bold mb-4">
+              Всё, что нужно знать о поступлении — за одну встречу
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Я — Азнаур Гамзатов, студент 3-го курса МГСУ. Сдал ЕГЭ на 290 баллов, прошёл в ВШЭ и Финансовую академию — 
+              но сознательно выбрал МГСУ. Теперь помогаю абитуриентам избежать ошибок, которые стоят нервов и года жизни.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
+            {[
+              {
+                icon: Target,
+                title: "Персональная стратегия",
+                text: "Разберу вашу ситуацию — баллы, направление, конкурс — и составлю пошаговый план поступления",
+              },
+              {
+                icon: AlertTriangle,
+                title: "Подводные камни",
+                text: "Ошибки в заявлениях, нюансы с аттестатами, разница между факультетами — предупрежу обо всём",
+              },
+              {
+                icon: Shield,
+                title: "Инсайды изнутри",
+                text: "Знаю МГСУ как студент: реальные проходные, общежития, преподаватели — то, чего нет в буклетах",
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={item.title}
+                custom={i}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="bg-background rounded-2xl p-5 md:p-6 border border-border text-center"
+              >
+                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-3">
+                  <item.icon className="w-5 h-5 text-primary" />
+                </div>
+                <h3 className="font-display font-bold text-sm md:text-base mb-2">{item.title}</h3>
+                <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{item.text}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="mt-8 text-center"
+          >
+            <a
+              href="#services"
+              className="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:underline"
+            >
+              Посмотреть тарифы
+              <ArrowRight className="w-4 h-4" />
+            </a>
           </motion.div>
         </div>
       </section>
@@ -637,7 +710,8 @@ const Index = () => {
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Desktop grid */}
+          <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {achievements.map((a, i) => {
               const Wrapper = a.pdf ? motion.a : motion.div;
               const linkProps = a.pdf ? { href: a.pdf, target: "_blank", rel: "noopener noreferrer" } : {};
@@ -679,6 +753,43 @@ const Index = () => {
                     </h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">{a.description}</p>
                   </div>
+                </Wrapper>
+              );
+            })}
+          </div>
+
+          {/* Mobile compact list */}
+          <div className="sm:hidden space-y-3">
+            {achievements.map((a, i) => {
+              const Wrapper = a.pdf ? motion.a : motion.div;
+              const linkProps = a.pdf ? { href: a.pdf, target: "_blank", rel: "noopener noreferrer" } : {};
+              return (
+                <Wrapper
+                  key={a.title}
+                  {...linkProps}
+                  custom={i}
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  className="group flex items-center gap-3 bg-card rounded-xl border border-border p-3 hover:border-primary/40 transition-colors"
+                >
+                  <img
+                    src={a.image}
+                    alt={a.title}
+                    loading="lazy"
+                    className="w-14 h-14 rounded-lg object-cover object-top shrink-0"
+                  />
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${a.badgeColor}`}>
+                        {a.badge}
+                      </span>
+                    </div>
+                    <h3 className="font-display font-bold text-sm truncate">{a.title}</h3>
+                    <p className="text-xs text-muted-foreground line-clamp-1">{a.description}</p>
+                  </div>
+                  {a.pdf && <ExternalLink className="w-4 h-4 text-muted-foreground shrink-0" />}
                 </Wrapper>
               );
             })}
