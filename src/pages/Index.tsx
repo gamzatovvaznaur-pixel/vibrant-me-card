@@ -14,6 +14,7 @@ import docDiplomaBp from "@/assets/doc-diploma-bp.jpg";
 import docBst from "@/assets/doc-bst.jpg";
 import docRecDu from "@/assets/doc-rec-du.jpg";
 import docRecCb from "@/assets/doc-rec-cb.jpg";
+import docEge from "@/assets/doc-ege-results.png";
 
 const achievements = [
   {
