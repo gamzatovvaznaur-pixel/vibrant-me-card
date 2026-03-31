@@ -174,32 +174,12 @@ const ContactForm = ({ dark = false }: { dark?: boolean }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-full max-w-md mx-auto">
-      <input
-        name="name"
-        required
-        placeholder="Ваше имя"
-        className={`px-4 py-3 rounded-xl text-sm border outline-none focus:ring-2 focus:ring-primary ${
-          dark
-            ? "bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
-            : "bg-background border-border text-foreground placeholder:text-muted-foreground"
-        }`}
-      />
+    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 w-full max-w-md mx-auto">
       <input
         name="phone"
         required
         placeholder="Телефон или Telegram"
-        className={`px-4 py-3 rounded-xl text-sm border outline-none focus:ring-2 focus:ring-primary ${
-          dark
-            ? "bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
-            : "bg-background border-border text-foreground placeholder:text-muted-foreground"
-        }`}
-      />
-      <textarea
-        name="message"
-        rows={2}
-        placeholder="Вопрос или комментарий (необязательно)"
-        className={`px-4 py-3 rounded-xl text-sm border outline-none focus:ring-2 focus:ring-primary resize-none ${
+        className={`flex-1 px-4 py-3 rounded-xl text-sm border outline-none focus:ring-2 focus:ring-primary ${
           dark
             ? "bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
             : "bg-background border-border text-foreground placeholder:text-muted-foreground"
