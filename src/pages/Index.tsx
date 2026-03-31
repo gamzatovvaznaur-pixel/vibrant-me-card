@@ -230,6 +230,7 @@ const Index = () => {
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
             <a href="#about" className="hover:text-foreground transition-colors">Обо мне</a>
+            <a href="#achievements" className="hover:text-foreground transition-colors">Достижения</a>
             <a href="#university" className="hover:text-foreground transition-colors">О МГСУ</a>
             <a href="#services" className="hover:text-foreground transition-colors">Услуги</a>
             <a href="#how" className="hover:text-foreground transition-colors">Как это работает</a>
