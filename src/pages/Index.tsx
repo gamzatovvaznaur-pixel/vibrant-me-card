@@ -267,11 +267,11 @@ const Index = () => {
               custom={1} variants={fadeUp} initial="hidden" animate="visible"
               className="font-display text-3xl md:text-4xl lg:text-[3.2rem] font-extrabold leading-[1.25] mb-6"
             >
-              Поступление в{" "}
+              Поступи в{" "}
               <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--gradient-hero)" }}>
                 МГСУ
               </span>
-              : на что реально обратить внимание?
+              {" "}без ошибок — консультация от студента с 290 баллами
             </motion.h1>
             <motion.p
               custom={2} variants={fadeUp} initial="hidden" animate="visible"
