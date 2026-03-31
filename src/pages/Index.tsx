@@ -1,10 +1,11 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   GraduationCap, CheckCircle, MessageCircle, Star, ArrowRight,
-  BookOpen, Users, Target, Clock, Phone, Building2, Award, MapPin,
-  AlertTriangle, FileText, Shield, Lightbulb
+  BookOpen, Users, Target, Clock, Building2, Award, MapPin,
+  AlertTriangle, FileText, Shield, Lightbulb, Send
 } from "lucide-react";
-import aznaur1 from "@/assets/aznaur-photo-1.jpg";
+import aznaurHero from "@/assets/aznaur-hero-cropped.jpg";
 import aznaur2 from "@/assets/aznaur-photo-2.jpg";
 import mgsuCampus from "@/assets/mgsu-campus-wiki.jpg";
 import mgsuBuilding from "@/assets/mgsu-building.jpg";
@@ -20,18 +21,6 @@ const fadeUp = {
 
 const plans = [
   {
-    title: "Экспресс-консультация",
-    price: "Бесплатно",
-    description: "Быстрые ответы на основные вопросы о поступлении",
-    features: [
-      "30-минутный созвон",
-      "Обзор направлений МГСУ",
-      "Ответы на ваши вопросы",
-      "Рекомендации по подготовке",
-    ],
-    popular: false,
-  },
-  {
     title: "Полное сопровождение",
     price: "5 000 ₽",
     description: "Индивидуальный план поступления от А до Я",
@@ -40,8 +29,7 @@ const plans = [
       "Подбор направления и специальности",
       "Помощь со сбором документов",
       "Стратегия подачи заявлений",
-      "Поддержка до зачисления",
-      "Чат для вопросов 24/7",
+      "Возможность задать вопросы в течение 2 недель после консультации",
     ],
     popular: true,
   },
@@ -51,7 +39,6 @@ const plans = [
     description: "Максимальная поддержка + подготовка к учёбе",
     features: [
       "Всё из «Полного сопровождения»",
-      "Подготовка к внутренним экзаменам",
       "Знакомство с жизнью в МГСУ",
       "Советы по общежитию и быту",
       "Помощь с адаптацией на 1 курсе",
@@ -92,11 +79,91 @@ const whatYouGet = [
 ];
 
 const steps = [
-  { num: "01", title: "Оставьте заявку", desc: "Напишите мне в Telegram или позвоните" },
-  { num: "02", title: "Бесплатный созвон", desc: "Обсудим вашу ситуацию и подберём план" },
+  { num: "01", title: "Оставьте заявку", desc: "Заполните форму или напишите в Telegram" },
+  { num: "02", title: "Обсуждаем детали", desc: "Обсудим вашу ситуацию и подберём план" },
   { num: "03", title: "Работаем вместе", desc: "Следуем стратегии и готовимся к поступлению" },
   { num: "04", title: "Вы в МГСУ!", desc: "Поздравляю — вы студент лучшего строительного вуза" },
 ];
+
+const FORMSPREE_URL = "https://formspree.io/f/xzdkrlwj";
+const TG_LINK = "https://t.me/gam1za";
+
+const ContactForm = ({ dark = false }: { dark?: boolean }) => {
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    const form = e.currentTarget;
+    await fetch(FORMSPREE_URL, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { Accept: "application/json" },
+    });
+    setLoading(false);
+    setSubmitted(true);
+  };
+
+  if (submitted) {
+    return (
+      <div className={`text-center py-6 ${dark ? "text-primary-foreground" : "text-foreground"}`}>
+        <CheckCircle className="w-10 h-10 mx-auto mb-3 text-accent" />
+        <p className="font-bold text-lg">Заявка отправлена!</p>
+        <p className={`text-sm mt-1 ${dark ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
+          Я свяжусь с вами в ближайшее время
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-full max-w-md mx-auto">
+      <input
+        name="name"
+        required
+        placeholder="Ваше имя"
+        className={`px-4 py-3 rounded-xl text-sm border outline-none focus:ring-2 focus:ring-primary ${
+          dark
+            ? "bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
+            : "bg-background border-border text-foreground placeholder:text-muted-foreground"
+        }`}
+      />
+      <input
+        name="phone"
+        required
+        placeholder="Телефон или Telegram"
+        className={`px-4 py-3 rounded-xl text-sm border outline-none focus:ring-2 focus:ring-primary ${
+          dark
+            ? "bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
+            : "bg-background border-border text-foreground placeholder:text-muted-foreground"
+        }`}
+      />
+      <textarea
+        name="message"
+        rows={2}
+        placeholder="Вопрос или комментарий (необязательно)"
+        className={`px-4 py-3 rounded-xl text-sm border outline-none focus:ring-2 focus:ring-primary resize-none ${
+          dark
+            ? "bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
+            : "bg-background border-border text-foreground placeholder:text-muted-foreground"
+        }`}
+      />
+      <button
+        type="submit"
+        disabled={loading}
+        className={`inline-flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-bold transition-opacity hover:opacity-90 disabled:opacity-60 ${
+          dark
+            ? "bg-primary-foreground text-foreground"
+            : "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
+        }`}
+      >
+        <Send className="w-4 h-4" />
+        {loading ? "Отправка..." : "Оставить заявку"}
+      </button>
+    </form>
+  );
+};
 
 const Index = () => {
   return (
@@ -153,7 +220,7 @@ const Index = () => {
               custom={2} variants={fadeUp} initial="hidden" animate="visible"
               className="text-muted-foreground text-lg leading-relaxed max-w-lg mb-8"
             >
-              Расскажу как студент 3-го курса с 290 баллами ЕГЭ и осознанным выбором 
+              Расскажу как студент 3-го курса с 290 баллами ЕГЭ и осознанным выбором
               МГСУ вместо ВШЭ и Финансовой академии при Президенте.
             </motion.p>
             <motion.div
@@ -161,18 +228,20 @@ const Index = () => {
               className="flex flex-wrap gap-4"
             >
               <a
-                href="#services"
+                href="#contact"
                 className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-7 py-3.5 rounded-xl text-sm font-bold hover:opacity-90 transition-opacity shadow-lg shadow-primary/25"
               >
-                Смотреть тарифы
+                Оставить заявку
                 <ArrowRight className="w-4 h-4" />
               </a>
               <a
-                href="#contact"
+                href={TG_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 border-2 border-border px-7 py-3.5 rounded-xl text-sm font-bold hover:border-primary/40 transition-colors"
               >
                 <MessageCircle className="w-4 h-4" />
-                Бесплатная консультация
+                Написать в Telegram
               </a>
             </motion.div>
 
@@ -198,7 +267,7 @@ const Index = () => {
             <div className="relative">
               <div className="absolute -inset-4 rounded-3xl opacity-20" style={{ backgroundImage: "var(--gradient-hero)" }} />
               <img
-                src={aznaur1}
+                src={aznaurHero}
                 alt="Азнаур Гамзатов"
                 className="relative w-full max-w-md rounded-2xl object-cover shadow-2xl"
               />
@@ -234,19 +303,19 @@ const Index = () => {
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
                 Меня зовут Азнаур Гамзатов, я студент 3-го курса{" "}
-                <strong className="text-foreground">Московского государственного строительного университета (МГСУ)</strong>, 
-                факультет УКСН.
+                <strong className="text-foreground">Московского государственного строительного университета (МГСУ)</strong>,
+                факультет ИЭУКСН.
               </p>
               <p>
-                Три года назад я сдал ЕГЭ на <strong className="text-foreground">290 баллов</strong> и поступил. 
+                Три года назад я сдал ЕГЭ на <strong className="text-foreground">290 баллов</strong> и поступил.
                 Но самое интересное не это. У меня был реальный выбор: меня приняли в{" "}
                 <strong className="text-foreground">Высшую школу экономики</strong> и в{" "}
-                <strong className="text-foreground">Финансовую академию при Президенте</strong>. 
+                <strong className="text-foreground">Финансовую академию при Президенте</strong>.
                 И я сознательно выбрал МГСУ.
               </p>
               <p>
-                Сейчас я хорошо знаю университет изнутри. У нас очень много факультетов, 
-                и каждый отличается своей спецификой. Я лично знаком с ребятами с разных факультетов, 
+                Сейчас я хорошо знаю университет изнутри. У нас очень много факультетов,
+                и каждый отличается своей спецификой. Я лично знаком с ребятами с разных факультетов,
                 поэтому понимаю, где реально низкий проходной балл, а где — неочевидные сложности.
               </p>
             </div>
@@ -277,7 +346,7 @@ const Index = () => {
               «Опасности» поступления, о которых не говорят
             </h2>
             <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
-              На первый взгляд поступление в МГСУ может показаться простым. Но это обманчиво. 
+              На первый взгляд поступление в МГСУ может показаться простым. Но это обманчиво.
               Есть нюансы, которые обязательно изучить до подачи документов.
             </p>
           </motion.div>
@@ -331,14 +400,34 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Mid-page CTA */}
+      <section className="py-16 px-5">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="max-w-3xl mx-auto text-center rounded-3xl p-10 md:p-14 text-primary-foreground"
+          style={{ backgroundImage: "var(--gradient-hero)" }}
+        >
+          <h2 className="font-display text-2xl md:text-3xl font-bold mb-3">
+            Не откладывай поступление на потом
+          </h2>
+          <p className="text-primary-foreground/80 mb-8 max-w-md mx-auto text-sm">
+            Оставь заявку сейчас — и я помогу тебе избежать ошибок, которые совершают 90% абитуриентов
+          </p>
+          <ContactForm dark />
+        </motion.div>
+      </section>
+
       {/* About University */}
-      <section id="university" className="py-20 px-5">
+      <section id="university" className="py-20 px-5 bg-card">
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-14">
             <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">Университет</p>
             <h2 className="font-display text-3xl md:text-4xl font-bold">НИУ МГСУ — главный строительный вуз страны</h2>
             <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
-              Московский государственный строительный университет — один из ведущих технических вузов России 
+              Московский государственный строительный университет — один из ведущих технических вузов России
               с более чем 100-летней историей
             </p>
           </motion.div>
@@ -380,7 +469,7 @@ const Index = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="bg-card border border-border rounded-2xl p-6 hover:border-primary/30 transition-colors"
+                className="bg-background border border-border rounded-2xl p-6 hover:border-primary/30 transition-colors"
               >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                   <item.icon className="w-6 h-6 text-primary" />
@@ -394,17 +483,17 @@ const Index = () => {
       </section>
 
       {/* Services / Pricing */}
-      <section id="services" className="py-20 px-5 bg-card">
-        <div className="max-w-6xl mx-auto">
+      <section id="services" className="py-20 px-5">
+        <div className="max-w-5xl mx-auto">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-14">
             <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">Тарифы</p>
             <h2 className="font-display text-3xl md:text-4xl font-bold">Выбери свой формат</h2>
             <p className="text-muted-foreground mt-3 max-w-lg mx-auto">
-              Три варианта помощи — от быстрой консультации до полного сопровождения с менторством
+              Два варианта помощи — от полного сопровождения до VIP-менторства
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-3xl mx-auto">
             {plans.map((plan, i) => (
               <motion.div
                 key={plan.title}
@@ -415,8 +504,8 @@ const Index = () => {
                 viewport={{ once: true }}
                 className={`relative rounded-2xl p-7 border flex flex-col ${
                   plan.popular
-                    ? "border-primary shadow-xl shadow-primary/10 scale-[1.02] bg-background"
-                    : "border-border bg-background"
+                    ? "border-primary shadow-xl shadow-primary/10 bg-card"
+                    : "border-border bg-card"
                 }`}
               >
                 {plan.popular && (
@@ -452,7 +541,7 @@ const Index = () => {
       </section>
 
       {/* How it works */}
-      <section id="how" className="py-20 px-5">
+      <section id="how" className="py-20 px-5 bg-card">
         <div className="max-w-4xl mx-auto">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-14">
             <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">Процесс</p>
@@ -467,7 +556,7 @@ const Index = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="bg-card border border-border rounded-2xl p-6 flex gap-5"
+                className="bg-background border border-border rounded-2xl p-6 flex gap-5"
               >
                 <div className="font-display font-extrabold text-4xl text-primary/20">{s.num}</div>
                 <div>
@@ -480,7 +569,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* Final CTA */}
       <section id="contact" className="py-20 px-5">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -494,30 +583,21 @@ const Index = () => {
             Готов поступить в МГСУ?
           </h2>
           <p className="text-primary-foreground/80 mb-4 max-w-md mx-auto">
-            Записывайтесь. Я расскажу вам то, что не пишут в официальных брошюрах 
+            Записывайтесь. Я расскажу вам то, что не пишут в официальных брошюрах
             и о чём молчат на днях открытых дверей.
           </p>
-          <p className="text-primary-foreground/60 text-sm mb-8 max-w-md mx-auto">
-            Первая консультация — бесплатно!
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="mb-8">
             <a
-              href="https://t.me/"
+              href={TG_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-primary-foreground text-foreground px-7 py-3.5 rounded-xl text-sm font-bold hover:opacity-90 transition-opacity"
+              className="inline-flex items-center gap-2 text-primary-foreground/70 hover:text-primary-foreground text-sm transition-colors"
             >
               <MessageCircle className="w-4 h-4" />
-              Написать в Telegram
-            </a>
-            <a
-              href="tel:+79001234567"
-              className="inline-flex items-center gap-2 border-2 border-primary-foreground/30 text-primary-foreground px-7 py-3.5 rounded-xl text-sm font-bold hover:bg-primary-foreground/10 transition-colors"
-            >
-              <Phone className="w-4 h-4" />
-              Позвонить
+              Или напишите в Telegram: @gam1za
             </a>
           </div>
+          <ContactForm dark />
         </motion.div>
       </section>
 
