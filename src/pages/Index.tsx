@@ -3,12 +3,60 @@ import { motion } from "framer-motion";
 import {
   GraduationCap, CheckCircle, MessageCircle, Star, ArrowRight,
   BookOpen, Users, Target, Clock, Building2, Award, MapPin,
-  AlertTriangle, FileText, Shield, Lightbulb, Send
+  AlertTriangle, FileText, Shield, Lightbulb, Send, ExternalLink, Trophy
 } from "lucide-react";
 import aznaurHero from "@/assets/aznaur-hero-cropped.jpg";
 import aznaur2 from "@/assets/aznaur-photo-2.jpg";
 import mgsuCampus from "@/assets/mgsu-campus-wiki.jpg";
 import mgsuBuilding from "@/assets/mgsu-building.jpg";
+import docAttestat from "@/assets/doc-attestat.jpg";
+import docDiplomaBp from "@/assets/doc-diploma-bp.jpg";
+import docBst from "@/assets/doc-bst.jpg";
+import docRecDu from "@/assets/doc-rec-du.jpg";
+import docRecCb from "@/assets/doc-rec-cb.jpg";
+
+const achievements = [
+  {
+    image: docAttestat,
+    pdf: "/docs/attestat.pdf",
+    title: "Аттестат с отличием",
+    description: "Окончил гимназию №18 г. Краснодара с отличием. Все предметы — «отлично».",
+    badge: "Отличие",
+    badgeColor: "bg-amber-500/10 text-amber-600",
+  },
+  {
+    image: docDiplomaBp,
+    pdf: "/docs/diploma-bp.pdf",
+    title: "Победитель «Большая перемена»",
+    description: "Победитель Всероссийского конкурса «Большая перемена» среди школьников 8–10 классов. МДЦ «Артек», 2023 г.",
+    badge: "Всероссийский",
+    badgeColor: "bg-primary/10 text-primary",
+  },
+  {
+    image: docBst,
+    pdf: "/docs/bst-journal.pdf",
+    title: "Публикация в журнале БСТ (ВАК)",
+    description: "Соавтор научной статьи в «Бюллетене строительной техники» — рецензируемом журнале из перечня ВАК, №2 (1098), 2026 г.",
+    badge: "Наука",
+    badgeColor: "bg-accent/10 text-accent",
+  },
+  {
+    image: docRecDu,
+    pdf: "/docs/recommendation-du.pdf",
+    title: "Рекомендация от «Девелопмент-Юг»",
+    description: "Рекомендательное письмо по итогам практики в планово-экономическом отделе строительной компании ООО СИК «Девелопмент-Юг».",
+    badge: "Практика",
+    badgeColor: "bg-emerald-500/10 text-emerald-600",
+  },
+  {
+    image: docRecCb,
+    pdf: "/docs/recommendation-cb.pdf",
+    title: "Характеристика от Банка России",
+    description: "Положительная характеристика по итогам производственной практики в Центральном банке Российской Федерации.",
+    badge: "Практика",
+    badgeColor: "bg-emerald-500/10 text-emerald-600",
+  },
+];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
