@@ -470,7 +470,7 @@ const Index = () => {
               Есть нюансы, которые обязательно изучить до подачи документов.
             </p>
           </motion.div>
-          <div className="grid sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
             {dangers.map((d, i) => (
               <motion.div
                 key={d.title}
@@ -479,13 +479,13 @@ const Index = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="bg-card rounded-2xl p-6 border border-border hover:border-destructive/30 transition-colors"
+                className="bg-card rounded-xl md:rounded-2xl p-4 md:p-6 border border-border hover:border-destructive/30 transition-colors"
               >
-                <div className="w-12 h-12 rounded-xl bg-destructive/10 flex items-center justify-center mb-4">
-                  <d.icon className="w-6 h-6 text-destructive" />
+                <div className="w-9 h-9 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-destructive/10 flex items-center justify-center mb-2 md:mb-4">
+                  <d.icon className="w-4 h-4 md:w-6 md:h-6 text-destructive" />
                 </div>
-                <h3 className="font-display font-bold text-lg mb-2">{d.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{d.desc}</p>
+                <h3 className="font-display font-bold text-xs md:text-lg mb-1 md:mb-2">{d.title}</h3>
+                <p className="text-[11px] md:text-sm text-muted-foreground leading-relaxed">{d.desc}</p>
               </motion.div>
             ))}
           </div>
