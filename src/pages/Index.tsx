@@ -57,6 +57,13 @@ const achievements = [
     badge: "Практика",
     badgeColor: "bg-emerald-500/10 text-emerald-600",
   },
+  {
+    image: docEge,
+    title: "Результаты ЕГЭ 2024",
+    description: "Русский язык — 100 баллов, Математика профильная — 90 баллов. Высокие баллы, подтверждающие уровень подготовки.",
+    badge: "ЕГЭ",
+    badgeColor: "bg-blue-500/10 text-blue-600",
+  },
 ];
 
 const fadeUp = {
