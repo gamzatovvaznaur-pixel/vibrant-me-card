@@ -650,35 +650,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* How it works */}
-      <section id="how" className="py-20 px-5 bg-card">
-        <div className="max-w-4xl mx-auto">
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-14">
-            <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">Процесс</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold">Как это работает</h2>
-          </motion.div>
-          <div className="grid sm:grid-cols-2 gap-6">
-            {steps.map((s, i) => (
-              <motion.div
-                key={s.num}
-                custom={i}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="bg-background border border-border rounded-2xl p-6 flex gap-5"
-              >
-                <div className="font-display font-extrabold text-4xl text-primary/20">{s.num}</div>
-                <div>
-                  <h3 className="font-display font-bold text-lg mb-1">{s.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Achievements */}
       <section id="achievements" className="py-20 px-5">
         <div className="max-w-6xl mx-auto">
