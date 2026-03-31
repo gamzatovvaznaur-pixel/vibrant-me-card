@@ -208,7 +208,7 @@ const Index = () => {
             </motion.div>
             <motion.h1
               custom={1} variants={fadeUp} initial="hidden" animate="visible"
-              className="font-display text-3xl md:text-4xl lg:text-[3.2rem] font-extrabold leading-[1.1] mb-6"
+              className="font-display text-3xl md:text-4xl lg:text-[3.2rem] font-extrabold leading-[1.25] mb-6"
             >
               Поступление в{" "}
               <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--gradient-hero)" }}>
