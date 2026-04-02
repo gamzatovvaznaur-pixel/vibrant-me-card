@@ -6,7 +6,8 @@ import {
   BookOpen, Users, Target, Clock, Building2, Award, MapPin,
   AlertTriangle, FileText, Shield, Lightbulb, Send, ExternalLink, Trophy, Stethoscope
 } from "lucide-react";
-import emirHero from "@/assets/emir-hero.png";
+import emirHero from "@/assets/emir-photo-1.jpg";
+import emirPhoto2 from "@/assets/emir-photo-2.jpg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -338,7 +339,7 @@ const Sechenov = () => {
             transition={{ duration: 0.7 }}
           >
             <img
-              src={emirHero}
+              src={emirPhoto2}
               alt="Эмир Алибеков"
               loading="lazy"
               className="rounded-2xl object-cover w-full max-w-sm mx-auto shadow-xl"
