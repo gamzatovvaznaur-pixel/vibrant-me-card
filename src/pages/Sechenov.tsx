@@ -339,7 +339,7 @@ const Sechenov = () => {
             transition={{ duration: 0.7 }}
           >
             <img
-              src={emirHero}
+              src={emirPhoto2}
               alt="Эмир Алибеков"
               loading="lazy"
               className="rounded-2xl object-cover w-full max-w-sm mx-auto shadow-xl"
