@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import {
   GraduationCap, CheckCircle, MessageCircle, Star, ArrowRight,
   BookOpen, Users, Target, Clock, Building2, Award, MapPin,
