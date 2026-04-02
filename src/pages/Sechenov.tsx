@@ -4,68 +4,9 @@ import { Link } from "react-router-dom";
 import {
   GraduationCap, CheckCircle, MessageCircle, Star, ArrowRight,
   BookOpen, Users, Target, Clock, Building2, Award, MapPin,
-  AlertTriangle, FileText, Shield, Lightbulb, Send, ExternalLink, Trophy
+  AlertTriangle, FileText, Shield, Lightbulb, Send, ExternalLink, Trophy, Stethoscope
 } from "lucide-react";
-import aznaurHero from "@/assets/aznaur-hero-cropped.jpg";
-import aznaur2 from "@/assets/aznaur-photo-2.jpg";
-import mgsuCampus from "@/assets/mgsu-campus-wiki.jpg";
-import mgsuBuilding from "@/assets/mgsu-building.jpg";
-import docAttestat from "@/assets/doc-attestat.jpg";
-import docDiplomaBp from "@/assets/doc-diploma-bp.jpg";
-import docBst from "@/assets/doc-bst.jpg";
-import docRecDu from "@/assets/doc-rec-du.jpg";
-import docRecCb from "@/assets/doc-rec-cb.jpg";
-import docEge from "@/assets/doc-ege-results.png";
-
-const achievements = [
-  {
-    image: docAttestat,
-    pdf: "/docs/attestat.pdf",
-    title: "Аттестат с отличием",
-    description: "Окончил гимназию №18 г. Краснодара с отличием. Все предметы — «отлично».",
-    badge: "Отличие",
-    badgeColor: "bg-amber-500/10 text-amber-600",
-  },
-  {
-    image: docDiplomaBp,
-    pdf: "/docs/diploma-bp.pdf",
-    title: "Победитель «Большая перемена»",
-    description: "Победитель Всероссийского конкурса «Большая перемена» среди школьников 8–10 классов. МДЦ «Артек», 2023 г.",
-    badge: "Всероссийский",
-    badgeColor: "bg-primary/10 text-primary",
-  },
-  {
-    image: docBst,
-    pdf: "/docs/bst-journal.pdf",
-    title: "Публикация в журнале БСТ (ВАК)",
-    description: "Соавтор научной статьи в «Бюллетене строительной техники» — рецензируемом журнале из перечня ВАК, №2 (1098), 2026 г.",
-    badge: "Наука",
-    badgeColor: "bg-accent/10 text-accent",
-  },
-  {
-    image: docRecDu,
-    pdf: "/docs/recommendation-du.pdf",
-    title: "Рекомендация от «Девелопмент-Юг»",
-    description: "Рекомендательное письмо по итогам практики в планово-экономическом отделе строительной компании ООО СИК «Девелопмент-Юг».",
-    badge: "Практика",
-    badgeColor: "bg-emerald-500/10 text-emerald-600",
-  },
-  {
-    image: docRecCb,
-    pdf: "/docs/recommendation-cb.pdf",
-    title: "Характеристика от Банка России",
-    description: "Положительная характеристика по итогам производственной практики в Центральном банке Российской Федерации.",
-    badge: "Практика",
-    badgeColor: "bg-emerald-500/10 text-emerald-600",
-  },
-  {
-    image: docEge,
-    title: "Результаты ЕГЭ 2024",
-    description: "Русский язык — 100 баллов, Математика профильная — 90 баллов. Высокие баллы, подтверждающие уровень подготовки.",
-    badge: "ЕГЭ",
-    badgeColor: "bg-blue-500/10 text-blue-600",
-  },
-];
+import emirHero from "@/assets/emir-hero.png";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -76,6 +17,46 @@ const fadeUp = {
   }),
 };
 
+const dangers = [
+  {
+    icon: FileText,
+    title: "Особенности приёма",
+    desc: "Бюджет, целевое и платное — у каждого формата свои подводные камни и сроки.",
+  },
+  {
+    icon: AlertTriangle,
+    title: "Документы",
+    desc: "Без полного пакета документов в вуз просто не поступить — а список неочевидный.",
+  },
+  {
+    icon: Shield,
+    title: "Формат обучения",
+    desc: "Длительность пар, расписание, нагрузка — всё отличается от ожиданий.",
+  },
+  {
+    icon: MapPin,
+    title: "Кафедры по городу",
+    desc: "Разброс кафедр по Москве — можно тратить часы на дорогу между корпусами.",
+  },
+  {
+    icon: Clock,
+    title: "Упущенные сроки",
+    desc: "Жёсткие дедлайны на каждом этапе — одна ошибка, и год потерян.",
+  },
+  {
+    icon: Users,
+    title: "Скрытый конкурс",
+    desc: "На факультете с «низким» проходным может быть неочевидно высокая конкуренция.",
+  },
+];
+
+const whatYouGet = [
+  "Честный разбор процедуры поступления шаг за шагом",
+  "Опыт человека, который прошёл ЕГЭ, олимпиады, нервы и выбор между Сеченова, Пирогова, Павлова и КубГМУ",
+  "Огромное количество инсайдов о поступлении и обучении",
+  "Предупреждение о типичных ошибках — тех самых «опасностях», которые превращают поступление в хаос",
+];
+
 const plans = [
   {
     title: "Полное сопровождение",
@@ -83,7 +64,7 @@ const plans = [
     description: "Индивидуальный план поступления от А до Я",
     features: [
       "Анализ ваших шансов на поступление",
-      "Подбор направления и специальности",
+      "Подбор факультета и специальности",
       "Помощь со сбором документов",
       "Стратегия подачи заявлений",
       "Возможность задать вопросы в течение 2 недель после консультации",
@@ -96,7 +77,7 @@ const plans = [
     description: "Максимальная поддержка + подготовка к учёбе",
     features: [
       "Всё из «Полного сопровождения»",
-      "Знакомство с жизнью в МГСУ",
+      "Знакомство с жизнью в Сеченова",
       "Советы по общежитию и быту",
       "Помощь с адаптацией на 1 курсе",
       "3 месяца менторства после поступления",
@@ -104,47 +85,6 @@ const plans = [
     popular: false,
   },
 ];
-
-const dangers = [
-  {
-    icon: FileText,
-    title: "Ошибки в заявлении",
-    desc: "Одна опечатка — и заявку могут отклонить без объяснений.",
-  },
-  {
-    icon: AlertTriangle,
-    title: "Ловушка с аттестатом",
-    desc: "Оригинал подали не туда? Можно потерять бюджетное место.",
-  },
-  {
-    icon: Shield,
-    title: "Юридические нюансы",
-    desc: "Приёмная комиссия не расскажет о правилах, которые работают против вас.",
-  },
-  {
-    icon: Lightbulb,
-    title: "Факультеты «не те»",
-    desc: "В буклетах всё красиво, а реальность сильно отличается.",
-  },
-  {
-    icon: Clock,
-    title: "Упущенные сроки",
-    desc: "Подача документов, согласие на зачисление — у каждого этапа жёсткий дедлайн.",
-  },
-  {
-    icon: Users,
-    title: "Конкурс не там, где ждали",
-    desc: "На «лёгкое» направление конкурс может быть выше, чем на престижное.",
-  },
-];
-
-const whatYouGet = [
-  "Честный разбор процедуры поступления шаг за шагом",
-  "Опыт человека с 290 баллами ЕГЭ, выбиравшего между ВШЭ, Финансовой академией и МГСУ",
-  "Инсайды о факультетах от того, кто общается со студентами каждого из них",
-  "Предупреждение о типичных ошибках, которые превращают поступление в хаос",
-];
-
 
 const FORMSPREE_URL = "https://formspree.io/f/xzdkrlwj";
 const TG_LINK = "https://t.me/gam1za";
@@ -206,7 +146,7 @@ const ContactForm = ({ dark = false }: { dark?: boolean }) => {
   );
 };
 
-const Index = () => {
+const Sechenov = () => {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* Navigation */}
@@ -217,16 +157,14 @@ const Index = () => {
         className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border"
       >
         <div className="max-w-6xl mx-auto flex items-center justify-between px-5 py-4">
-          <div className="flex items-center gap-2">
-            <GraduationCap className="w-6 h-6 text-primary" />
-            <span className="font-display font-bold text-lg">ПоступиВМГСУ</span>
-          </div>
+          <Link to="/sechenov" className="flex items-center gap-2">
+            <Stethoscope className="w-6 h-6 text-primary" />
+            <span className="font-display font-bold text-lg">ПоступиВСЕЧУ</span>
+          </Link>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
             <a href="#about" className="hover:text-foreground transition-colors">Обо мне</a>
-            <a href="#achievements" className="hover:text-foreground transition-colors">Достижения</a>
-            <a href="#university" className="hover:text-foreground transition-colors">О МГСУ</a>
+            <a href="#university" className="hover:text-foreground transition-colors">О Сеченова</a>
             <a href="#services" className="hover:text-foreground transition-colors">Услуги</a>
-            
           </div>
           <a
             href="#contact"
@@ -237,7 +175,7 @@ const Index = () => {
         </div>
       </motion.nav>
 
-      {/* Hero — 100vh */}
+      {/* Hero */}
       <section className="min-h-screen flex items-center pt-20 pb-20 px-5">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center w-full">
           <div>
@@ -246,24 +184,23 @@ const Index = () => {
               className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6"
             >
               <Star className="w-4 h-4" />
-              290 баллов ЕГЭ · Выбор между ВШЭ, ФА и МГСУ
+              297 баллов ЕГЭ · БВИ · Выбор между топ-вузами
             </motion.div>
             <motion.h1
               custom={1} variants={fadeUp} initial="hidden" animate="visible"
               className="font-display text-3xl md:text-4xl lg:text-[3.2rem] font-extrabold leading-[1.25] mb-6"
             >
-              Поступи в{" "}
+              Поступление в{" "}
               <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--gradient-hero)" }}>
-                МГСУ
+                Сеченова
               </span>
-              {" "}без ошибок — консультация от студента с 290 баллами
+              : на что реально обратить внимание?
             </motion.h1>
             <motion.p
               custom={2} variants={fadeUp} initial="hidden" animate="visible"
               className="text-muted-foreground text-lg leading-relaxed max-w-lg mb-8"
             >
-              Расскажу как студент 3-го курса с 290 баллами ЕГЭ и осознанным выбором
-              МГСУ вместо ВШЭ и Финансовой академии при Президенте.
+              Расскажу, как студент с 297 баллами ЕГЭ и БВИ с выбором между Сеченова, Пирогова, Павлова и КубГМУ.
             </motion.p>
             <motion.div
               custom={3} variants={fadeUp} initial="hidden" animate="visible"
@@ -292,10 +229,10 @@ const Index = () => {
               className="flex items-center gap-6 mt-10 text-sm text-muted-foreground"
             >
               <span className="flex items-center gap-1.5">
-                <CheckCircle className="w-4 h-4 text-accent" /> 50+ поступивших
+                <CheckCircle className="w-4 h-4 text-accent" /> 297 баллов ЕГЭ
               </span>
               <span className="flex items-center gap-1.5">
-                <CheckCircle className="w-4 h-4 text-accent" /> 3 курс МГСУ
+                <CheckCircle className="w-4 h-4 text-accent" /> 3 курс Сеченова
               </span>
             </motion.div>
           </div>
@@ -309,8 +246,8 @@ const Index = () => {
             <div className="relative">
               <div className="absolute -inset-4 rounded-3xl opacity-20" style={{ backgroundImage: "var(--gradient-hero)" }} />
               <img
-                src={aznaurHero}
-                alt="Азнаур Гамзатов"
+                src={emirHero}
+                alt="Эмир Алибеков"
                 className="relative w-full max-w-md rounded-2xl object-cover shadow-2xl"
               />
             </div>
@@ -318,7 +255,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Quick Summary — What I Offer */}
+      {/* Quick Summary */}
       <section className="py-16 md:py-20 px-5 bg-card border-b border-border">
         <div className="max-w-4xl mx-auto">
           <motion.div
@@ -333,8 +270,8 @@ const Index = () => {
               Всё, что нужно знать о поступлении — за одну встречу
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Я — Азнаур Гамзатов, студент 3-го курса МГСУ. Сдал ЕГЭ на 290 баллов, прошёл в ВШЭ и Финансовую академию — 
-              но сознательно выбрал МГСУ. Теперь помогаю абитуриентам избежать ошибок, которые стоят нервов и года жизни.
+              Я — Эмир Алибеков, студент 3-го курса ПМГМУ имени Сеченова. Сдал ЕГЭ на 297 баллов, 
+              имел БВИ и выбирал между Сеченова, Пирогова, Павлова и КубГМУ — и сознательно выбрал Сеченова.
             </p>
           </motion.div>
 
@@ -343,17 +280,17 @@ const Index = () => {
               {
                 icon: Target,
                 title: "Персональная стратегия",
-                text: "Разберу вашу ситуацию — баллы, направление, конкурс — и составлю пошаговый план поступления",
+                text: "Разберу вашу ситуацию — баллы, факультет, конкурс — и составлю пошаговый план поступления",
               },
               {
                 icon: AlertTriangle,
                 title: "Подводные камни",
-                text: "Ошибки в заявлениях, нюансы с аттестатами, разница между факультетами — предупрежу обо всём",
+                text: "Нюансы приёма на бюджет и целевое, документы, разброс кафедр — предупрежу обо всём",
               },
               {
                 icon: Shield,
                 title: "Инсайды изнутри",
-                text: "Знаю МГСУ как студент: реальные проходные, общежития, преподаватели — то, чего нет в буклетах",
+                text: "Знаю Сеченова как студент: факультеты, проходные, общежития — то, чего нет в буклетах",
               },
             ].map((item, i) => (
               <motion.div
@@ -401,8 +338,8 @@ const Index = () => {
             transition={{ duration: 0.7 }}
           >
             <img
-              src={aznaur2}
-              alt="Азнаур Гамзатов"
+              src={emirHero}
+              alt="Эмир Алибеков"
               loading="lazy"
               className="rounded-2xl object-cover w-full max-w-sm mx-auto shadow-xl"
             />
@@ -414,55 +351,56 @@ const Index = () => {
             transition={{ duration: 0.7 }}
           >
             <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">Обо мне</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">Азнаур Гамзатов</h2>
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">Эмир Алибеков</h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                Меня зовут Азнаур Гамзатов, я студент 3-го курса{" "}
-                <strong className="text-foreground">Московского государственного строительного университета (МГСУ)</strong>,
-                факультет ИЭУКСН.
+                Меня зовут Эмир Алибеков, я студент 3-го курса{" "}
+                <strong className="text-foreground">ПМГМУ имени Сеченова</strong>,
+                направление лечебное дело, бюджет.
               </p>
               <p>
-                Три года назад я сдал ЕГЭ на <strong className="text-foreground">290 баллов</strong> и поступил.
+                Три года назад я сдал ЕГЭ на <strong className="text-foreground">297 баллов</strong> и поступил.
                 Но самое интересное не это. У меня был реальный выбор: меня приняли в{" "}
-                <strong className="text-foreground">Высшую школу экономики</strong> и в{" "}
-                <strong className="text-foreground">Финансовую академию при Президенте</strong>.
-                И я сознательно выбрал МГСУ.
+                <strong className="text-foreground">РНИМУ имени Пирогова</strong>,{" "}
+                <strong className="text-foreground">Павлова</strong> и{" "}
+                <strong className="text-foreground">КубГМУ</strong>.
+                И я сознательно выбрал Сеченова.
               </p>
               <p>
                 Сейчас я хорошо знаю университет изнутри. У нас очень много факультетов,
-                и каждый отличается своей спецификой. Я лично знаком с ребятами с разных факультетов,
+                и каждый отличается своей спецификой и особенностями поступления.
+                Я лично знаком с ребятами с разных факультетов,
                 поэтому понимаю, где реально низкий проходной балл, а где — неочевидные сложности.
               </p>
             </div>
             <div className="flex gap-8 mt-8">
               <div>
-                <div className="font-display font-extrabold text-2xl text-primary">290</div>
+                <div className="font-display font-extrabold text-2xl text-primary">297</div>
                 <div className="text-xs text-muted-foreground mt-1">Баллов ЕГЭ</div>
               </div>
               <div>
                 <div className="font-display font-extrabold text-2xl text-primary">3-й</div>
-                <div className="text-xs text-muted-foreground mt-1">Курс МГСУ</div>
+                <div className="text-xs text-muted-foreground mt-1">Курс Сеченова</div>
               </div>
               <div>
-                <div className="font-display font-extrabold text-2xl text-primary">50+</div>
-                <div className="text-xs text-muted-foreground mt-1">Поступивших</div>
+                <div className="font-display font-extrabold text-2xl text-primary">БВИ</div>
+                <div className="text-xs text-muted-foreground mt-1">Олимпиады</div>
               </div>
             </div>
           </motion.div>
         </div>
       </section>
 
-
+      {/* Dangers */}
       <section className="py-20 px-5">
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-14">
             <p className="text-destructive font-semibold text-sm mb-2 tracking-wide uppercase">Внимание</p>
             <h2 className="font-display text-3xl md:text-4xl font-bold">
-              «Опасности» поступления, о которых не говорят
+              Нюансы поступления, о которых не говорят
             </h2>
             <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
-              На первый взгляд поступление в МГСУ может показаться простым. Но это обманчиво.
-              Есть нюансы, которые обязательно изучить до подачи документов.
+              Поступление в Сеченова — достаточно непростая задача. Есть нюансы, которые обязательно изучить до подачи документов.
             </p>
           </motion.div>
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
@@ -540,42 +478,20 @@ const Index = () => {
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-14">
             <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">Университет</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold">НИУ МГСУ — главный строительный вуз страны</h2>
+            <h2 className="font-display text-3xl md:text-4xl font-bold">ПМГМУ имени Сеченова — первый мед России</h2>
             <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
-              Московский государственный строительный университет — один из ведущих технических вузов России
-              с более чем 100-летней историей
+              Первый Московский государственный медицинский университет имени И.М. Сеченова — старейший и один из самых престижных медицинских вузов страны
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-6 mb-14">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="overflow-hidden rounded-2xl"
-            >
-              <img src={mgsuCampus} alt="Кампус МГСУ" className="w-full h-72 md:h-96 object-cover hover:scale-105 transition-transform duration-700" loading="lazy" />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.15 }}
-              className="overflow-hidden rounded-2xl"
-            >
-              <img src={mgsuBuilding} alt="Здание МГСУ" className="w-full h-72 md:h-96 object-cover hover:scale-105 transition-transform duration-700" loading="lazy" />
-            </motion.div>
-          </div>
-
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { icon: Building2, title: "Топ-5 технических вузов", desc: "МГСУ стабильно входит в пятёрку лучших инженерных университетов России" },
-              { icon: Award, title: "100+ лет истории", desc: "Основан в 1921 году. За это время подготовлены десятки тысяч инженеров" },
-              { icon: MapPin, title: "Кампус в Москве", desc: "Современный кампус с лабораториями, спортивными комплексами и общежитиями" },
-              { icon: Users, title: "20 000+ студентов", desc: "Одно из крупнейших сообществ будущих строителей, архитекторов и инженеров" },
-              { icon: BookOpen, title: "30+ направлений", desc: "От строительства до IT, экологии, архитектуры и управления недвижимостью" },
-              { icon: Target, title: "95% трудоустройство", desc: "Выпускники востребованы в крупных строительных компаниях и госструктурах" },
+              { icon: Building2, title: "Топ-1 медицинский вуз", desc: "Сеченовский университет стабильно занимает первое место среди медицинских вузов России" },
+              { icon: Award, title: "260+ лет истории", desc: "Основан в 1758 году. Старейший медицинский вуз с вековыми традициями" },
+              { icon: MapPin, title: "Кампус в центре Москвы", desc: "Исторические здания и современные клиники в самом сердце столицы" },
+              { icon: Users, title: "15 000+ студентов", desc: "Крупнейшее медицинское сообщество будущих врачей, фармацевтов и исследователей" },
+              { icon: BookOpen, title: "Множество факультетов", desc: "Лечебное дело, стоматология, фармация, биотехнологии, клиническая психология и многое другое" },
+              { icon: Target, title: "Высокое трудоустройство", desc: "Выпускники работают в лучших клиниках России и за рубежом" },
             ].map((item, i) => (
               <motion.div
                 key={item.title}
@@ -655,104 +571,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Achievements */}
-      <section id="achievements" className="py-20 px-5">
-        <div className="max-w-6xl mx-auto">
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-14">
-            <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">Подтверждено</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold">Мои достижения</h2>
-            <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
-              Результаты, которые подтверждают мою экспертизу — от аттестата с отличием до научных публикаций и практик в крупнейших организациях
-            </p>
-          </motion.div>
-
-          {/* Desktop grid */}
-          <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {achievements.map((a, i) => {
-              const Wrapper = a.pdf ? motion.a : motion.div;
-              const linkProps = a.pdf ? { href: a.pdf, target: "_blank", rel: "noopener noreferrer" } : {};
-              return (
-                <Wrapper
-                  key={a.title}
-                  {...linkProps}
-                  custom={i}
-                  variants={fadeUp}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  className="group bg-card rounded-2xl border border-border overflow-hidden hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300"
-                >
-                  <div className="relative overflow-hidden bg-muted">
-                    <img
-                      src={a.image}
-                      alt={a.title}
-                      loading="lazy"
-                      className="w-full h-52 object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                    />
-                    {a.pdf && (
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
-                        <span className="inline-flex items-center gap-1.5 bg-primary-foreground/90 text-foreground text-xs font-semibold px-3 py-1.5 rounded-full">
-                          <ExternalLink className="w-3 h-3" />
-                          Открыть документ
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-5">
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className={`text-[11px] font-bold px-2.5 py-1 rounded-full ${a.badgeColor}`}>
-                        {a.badge}
-                      </span>
-                    </div>
-                    <h3 className="font-display font-bold text-base mb-2 group-hover:text-primary transition-colors">
-                      {a.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{a.description}</p>
-                  </div>
-                </Wrapper>
-              );
-            })}
-          </div>
-
-          {/* Mobile compact list */}
-          <div className="sm:hidden space-y-3">
-            {achievements.map((a, i) => {
-              const Wrapper = a.pdf ? motion.a : motion.div;
-              const linkProps = a.pdf ? { href: a.pdf, target: "_blank", rel: "noopener noreferrer" } : {};
-              return (
-                <Wrapper
-                  key={a.title}
-                  {...linkProps}
-                  custom={i}
-                  variants={fadeUp}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  className="group flex items-center gap-3 bg-card rounded-xl border border-border p-3 hover:border-primary/40 transition-colors"
-                >
-                  <img
-                    src={a.image}
-                    alt={a.title}
-                    loading="lazy"
-                    className="w-14 h-14 rounded-lg object-cover object-top shrink-0"
-                  />
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-0.5">
-                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${a.badgeColor}`}>
-                        {a.badge}
-                      </span>
-                    </div>
-                    <h3 className="font-display font-bold text-sm truncate">{a.title}</h3>
-                    <p className="text-xs text-muted-foreground line-clamp-1">{a.description}</p>
-                  </div>
-                  {a.pdf && <ExternalLink className="w-4 h-4 text-muted-foreground shrink-0" />}
-                </Wrapper>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
       {/* Final CTA */}
       <section id="contact" className="py-20 px-5">
         <motion.div
@@ -764,7 +582,7 @@ const Index = () => {
           style={{ backgroundImage: "var(--gradient-hero)" }}
         >
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-            Готов поступить в МГСУ?
+            Готов поступить в Сеченова?
           </h2>
           <p className="text-primary-foreground/80 mb-4 max-w-md mx-auto">
             Записывайтесь. Я расскажу вам то, что не пишут в официальных брошюрах
@@ -778,7 +596,7 @@ const Index = () => {
               className="inline-flex items-center gap-2 text-primary-foreground/70 hover:text-primary-foreground text-sm transition-colors"
             >
               <MessageCircle className="w-4 h-4" />
-              Или напишите в Telegram: @gam1za
+              Или напишите в Telegram
             </a>
           </div>
           <ContactForm dark />
@@ -798,10 +616,11 @@ const Index = () => {
               Все университеты
             </Link>
             <Link
-              to="/sechenov"
+              to="/"
               className="inline-flex items-center justify-center gap-2 border-2 border-border px-7 py-3.5 rounded-xl text-sm font-bold hover:border-primary/40 transition-colors"
             >
-              ПоступиВСЕЧУ
+              <Building2 className="w-5 h-5" />
+              ПоступиВМГСУ
             </Link>
           </div>
         </div>
@@ -811,11 +630,11 @@ const Index = () => {
       <footer className="py-10 px-5 border-t border-border">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-2 font-display font-bold">
-            <GraduationCap className="w-5 h-5 text-primary" />
-            ПоступиВМГСУ
+            <Stethoscope className="w-5 h-5 text-primary" />
+            ПоступиВСЕЧУ
           </div>
           <p className="text-xs text-muted-foreground">
-            © 2026 Гамзатов Азнаур. Все права защищены.
+            © 2026 Алибеков Эмир. Все права защищены.
           </p>
         </div>
       </footer>
@@ -823,4 +642,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Sechenov;
