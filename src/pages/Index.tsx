@@ -784,6 +784,28 @@ const Index = () => {
         </motion.div>
       </section>
 
+      {/* Cross-navigation */}
+      <section className="py-14 px-5 bg-card border-t border-border">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-muted-foreground text-sm mb-6">Смотрите также консультации по другим вузам</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              to="/universities"
+              className="inline-flex items-center justify-center gap-2 border-2 border-border px-7 py-3.5 rounded-xl text-sm font-bold hover:border-primary/40 transition-colors"
+            >
+              <GraduationCap className="w-5 h-5" />
+              Все университеты
+            </Link>
+            <Link
+              to="/sechenov"
+              className="inline-flex items-center justify-center gap-2 border-2 border-border px-7 py-3.5 rounded-xl text-sm font-bold hover:border-primary/40 transition-colors"
+            >
+              ПоступиВСЕЧУ
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="py-10 px-5 border-t border-border">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
