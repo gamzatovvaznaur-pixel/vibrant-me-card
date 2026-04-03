@@ -31,7 +31,7 @@ const universities = [
     score: "297 баллов ЕГЭ + БВИ",
     course: "3-й курс",
     description: "Разбор поступления в мед от студента с 297 баллами и БВИ. Все подводные камни.",
-    link: "/sechenov",
+    link: "/sechenov-sale",
     brand: "Записаться",
   },
 ];
