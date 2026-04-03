@@ -610,7 +610,7 @@ const Sechenov = () => {
           <p className="text-muted-foreground text-sm mb-6">Смотрите также консультации по другим вузам</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              to="/universities"
+              to="/"
               className="inline-flex items-center justify-center gap-2 border-2 border-border px-7 py-3.5 rounded-xl text-sm font-bold hover:border-primary/40 transition-colors"
             >
               <GraduationCap className="w-5 h-5" />
