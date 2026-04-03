@@ -7,6 +7,7 @@ import Index from "./pages/Index.tsx";
 import Sechenov from "./pages/Sechenov.tsx";
 import Universities from "./pages/Universities.tsx";
 import MgsuSale from "./pages/MgsuSale.tsx";
+import SaleHub from "./pages/SaleHub.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();

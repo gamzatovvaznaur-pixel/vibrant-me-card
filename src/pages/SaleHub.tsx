@@ -19,9 +19,9 @@ const universities = [
     consultant: "Азнаур Гамзатов",
     score: "290 баллов ЕГЭ",
     course: "3-й курс",
-    description: "Консультация от студента с 290 баллами ЕГЭ, выбиравшего между ВШЭ, Финансовой академией и МГСУ.",
-    link: "/mgsu",
-    brand: "ПоступиВМГСУ",
+    description: "Узнай все ловушки приёмной кампании за одну консультацию от студента с 290 баллами.",
+    link: "/mgsu-sale",
+    brand: "Записаться",
   },
   {
     icon: Stethoscope,
@@ -30,31 +30,15 @@ const universities = [
     consultant: "Эмир Алибеков",
     score: "297 баллов ЕГЭ + БВИ",
     course: "3-й курс",
-    description: "Консультация от студента с 297 баллами ЕГЭ и БВИ, выбиравшего между Сеченова, Пирогова, Павлова и КубГМУ.",
+    description: "Разбор поступления в мед от студента с 297 баллами и БВИ. Все подводные камни.",
     link: "/sechenov",
-    brand: "ПоступиВСЕЧУ",
+    brand: "Записаться",
   },
 ];
 
-const Universities = () => {
+const SaleHub = () => {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      {/* Navigation */}
-      <motion.nav
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border"
-      >
-        <div className="max-w-6xl mx-auto flex items-center justify-between px-5 py-4">
-          <div className="flex items-center gap-2">
-            <GraduationCap className="w-6 h-6 text-primary" />
-            <span className="font-display font-bold text-lg">Университеты</span>
-          </div>
-        </div>
-      </motion.nav>
-
-      {/* Hero */}
       <section className="min-h-[60vh] flex items-center pt-24 pb-16 px-5">
         <div className="max-w-4xl mx-auto text-center w-full">
           <motion.div
@@ -62,27 +46,26 @@ const Universities = () => {
             className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6"
           >
             <GraduationCap className="w-4 h-4" />
-            Консультации по поступлению
+            Быстрая запись
           </motion.div>
           <motion.h1
             custom={1} variants={fadeUp} initial="hidden" animate="visible"
             className="font-display text-3xl md:text-5xl font-extrabold leading-[1.2] mb-6"
           >
-            Выберите{" "}
+            Запишись на{" "}
             <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--gradient-hero)" }}>
-              университет
+              консультацию
             </span>
           </motion.h1>
           <motion.p
             custom={2} variants={fadeUp} initial="hidden" animate="visible"
             className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed"
           >
-            Консультации от реальных студентов, которые прошли через поступление и знают свои вузы изнутри.
+            Выбери вуз и запишись прямо сейчас — места ограничены.
           </motion.p>
         </div>
       </section>
 
-      {/* University Cards */}
       <section className="pb-20 px-5">
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6 lg:gap-8">
           {universities.map((uni, i) => (
@@ -111,7 +94,7 @@ const Universities = () => {
                   <span className="bg-secondary px-3 py-1 rounded-full font-semibold">{uni.course}</span>
                 </div>
                 <div className="flex items-center gap-2 text-primary font-semibold text-sm">
-                  Перейти к {uni.brand}
+                  {uni.brand}
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </div>
               </Link>
@@ -119,22 +102,8 @@ const Universities = () => {
           ))}
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="py-10 px-5 border-t border-border">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-2 font-display font-bold">
-            <GraduationCap className="w-5 h-5 text-primary" />
-            Консультации по поступлению
-          </div>
-          <p className="text-xs text-muted-foreground">© 2026 Все права защищены.</p>
-        </div>
-        <div className="max-w-6xl mx-auto mt-6 text-center">
-          <Link to="/s" className="text-[10px] text-muted-foreground/30 hover:text-muted-foreground/50 transition-colors">·</Link>
-        </div>
-      </footer>
     </div>
   );
 };
 
-export default Universities;
+export default SaleHub;
