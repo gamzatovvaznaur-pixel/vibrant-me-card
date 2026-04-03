@@ -617,7 +617,7 @@ const Sechenov = () => {
               Все университеты
             </Link>
             <Link
-              to="/"
+              to="/mgsu"
               className="inline-flex items-center justify-center gap-2 border-2 border-border px-7 py-3.5 rounded-xl text-sm font-bold hover:border-primary/40 transition-colors"
             >
               <Building2 className="w-5 h-5" />
