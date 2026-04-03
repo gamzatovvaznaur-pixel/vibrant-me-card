@@ -130,7 +130,7 @@ const Universities = () => {
           <p className="text-xs text-muted-foreground">© 2026 Все права защищены.</p>
         </div>
         <div className="max-w-6xl mx-auto mt-6 text-center">
-          <Link to="/s" className="text-[10px] text-muted-foreground/30 hover:text-muted-foreground/50 transition-colors">·</Link>
+          <Link to="/s" className="text-[10px] text-muted-foreground/40 hover:text-muted-foreground/60 transition-colors">кратко</Link>
         </div>
       </footer>
     </div>
