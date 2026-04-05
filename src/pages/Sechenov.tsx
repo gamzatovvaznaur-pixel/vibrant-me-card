@@ -6,6 +6,7 @@ import {
   BookOpen, Users, Target, Clock, Building2, Award, MapPin,
   AlertTriangle, FileText, Shield, Lightbulb, Send, ExternalLink, Trophy, Stethoscope
 } from "lucide-react";
+import AdmissionQuiz from "@/components/AdmissionQuiz";
 import emirHero from "@/assets/emir-photo-1.jpg";
 import emirPhoto2 from "@/assets/emir-photo-2.jpg";
 
