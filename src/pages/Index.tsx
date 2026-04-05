@@ -6,6 +6,7 @@ import {
   BookOpen, Users, Target, Clock, Building2, Award, MapPin,
   AlertTriangle, FileText, Shield, Lightbulb, Send, ExternalLink, Trophy
 } from "lucide-react";
+import AdmissionQuiz from "@/components/AdmissionQuiz";
 import aznaurHero from "@/assets/aznaur-hero-cropped.jpg";
 import aznaur2 from "@/assets/aznaur-photo-2.jpg";
 import mgsuCampus from "@/assets/mgsu-campus-wiki.jpg";
