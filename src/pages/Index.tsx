@@ -392,6 +392,9 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Quiz */}
+      <AdmissionQuiz university="mgsu" />
+
       {/* About */}
       <section id="about" className="py-20 px-5 bg-card">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
