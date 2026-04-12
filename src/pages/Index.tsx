@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import {
   GraduationCap, CheckCircle, MessageCircle, Star, ArrowRight,
   BookOpen, Users, Target, Clock, Building2, Award, MapPin,
-  AlertTriangle, FileText, Shield, Lightbulb, Send, ExternalLink, Trophy
+  AlertTriangle, FileText, Shield, Lightbulb, Send, ExternalLink, Trophy,
+  Heart, ShieldCheck, HandHeart, Baby, Phone
 } from "lucide-react";
 import AdmissionQuiz from "@/components/AdmissionQuiz";
 import aznaurHero from "@/assets/aznaur-hero-cropped.jpg";
@@ -81,71 +82,70 @@ const plans = [
   {
     title: "Полное сопровождение",
     price: "3 490 ₽",
-    description: "Индивидуальный план поступления от А до Я",
+    description: "Индивидуальный план поступления вашего ребёнка",
     features: [
-      "Анализ ваших шансов на поступление",
-      "Подбор направления и специальности",
-      "Помощь со сбором документов",
-      "Стратегия подачи заявлений",
-      "Возможность задать вопросы в течение 2 недель после консультации",
+      "Анализ шансов ребёнка на поступление",
+      "Подбор направления и специальности под его сильные стороны",
+      "Помощь со сбором и проверкой документов",
+      "Стратегия подачи заявлений — без рисков потерять место",
+      "2 недели поддержки после консультации для вопросов",
     ],
     popular: true,
   },
   {
     title: "VIP-наставничество",
     price: "12 000 ₽",
-    description: "Максимальная поддержка + подготовка к учёбе",
+    description: "Максимальная поддержка от поступления до адаптации",
     features: [
       "Всё из «Полного сопровождения»",
-      "Знакомство с жизнью в МГСУ",
-      "Советы по общежитию и быту",
-      "Помощь с адаптацией на 1 курсе",
+      "Подробный рассказ о жизни в МГСУ для родителей",
+      "Советы по общежитию и безопасности",
+      "Помощь ребёнку с адаптацией на 1 курсе",
       "3 месяца менторства после поступления",
     ],
     popular: false,
   },
 ];
 
-const dangers = [
+const parentWorries = [
   {
     icon: FileText,
-    title: "Ошибки в заявлении",
-    desc: "Одна опечатка — и заявку могут отклонить без объяснений.",
+    title: "Ошибки в документах",
+    desc: "Одна опечатка в заявлении — и его отклонят без объяснений. Вы даже не узнаете вовремя.",
   },
   {
     icon: AlertTriangle,
-    title: "Ловушка с аттестатом",
-    desc: "Оригинал подали не туда? Можно потерять бюджетное место.",
+    title: "Оригинал аттестата не туда",
+    desc: "Подали оригинал в один вуз, а прошли в другой? Бюджетное место потеряно навсегда.",
   },
   {
     icon: Shield,
-    title: "Юридические нюансы",
-    desc: "Приёмная комиссия не расскажет о правилах, которые работают против вас.",
+    title: "Скрытые правила приёмки",
+    desc: "Приёмная комиссия не расскажет о нюансах. Вы думаете, что всё в порядке — а место уже ушло.",
   },
   {
     icon: Lightbulb,
-    title: "Факультеты «не те»",
-    desc: "В буклетах всё красиво, а реальность сильно отличается.",
+    title: "«Модное» направление ≠ лучшее",
+    desc: "Ребёнок выбрал популярное направление, а конкурс там в 3 раза выше. Узнаёте — слишком поздно.",
   },
   {
     icon: Clock,
-    title: "Упущенные сроки",
-    desc: "Подача документов, согласие на зачисление — у каждого этапа жёсткий дедлайн.",
+    title: "Пропущенные дедлайны",
+    desc: "У каждого этапа — жёсткий срок. Пропустили согласие на зачисление? Место занято другим.",
   },
   {
     icon: Users,
-    title: "Конкурс не там, где ждали",
-    desc: "На «лёгкое» направление конкурс может быть выше, чем на престижное.",
+    title: "Вы не знаете реальных конкурсов",
+    desc: "Проходные баллы в брошюрах — прошлогодние. В этом году всё может быть совсем иначе.",
   },
 ];
 
-const whatYouGet = [
-  "Честный разбор процедуры поступления шаг за шагом",
-  "Опыт человека с 290 баллами ЕГЭ, выбиравшего между ВШЭ, Финансовой академией и МГСУ",
-  "Инсайды о факультетах от того, кто общается со студентами каждого из них",
-  "Предупреждение о типичных ошибках, которые превращают поступление в хаос",
+const whatParentsGet = [
+  "Честный разбор всей процедуры поступления — простым языком, без казённых формулировок",
+  "Проверка документов и стратегия подачи, чтобы ни одна бумажка не «потерялась»",
+  "Инсайды о факультетах от студента, который знает МГСУ изнутри — не из рекламных буклетов",
+  "Спокойствие: вы будете уверены, что сделали всё правильно для будущего вашего ребёнка",
 ];
-
 
 const FORMSPREE_URL = "https://formspree.io/f/xzdkrlwj";
 const TG_LINK = "https://t.me/gam1za";
@@ -173,7 +173,7 @@ const ContactForm = ({ dark = false }: { dark?: boolean }) => {
         <CheckCircle className="w-10 h-10 mx-auto mb-3 text-accent" />
         <p className="font-bold text-lg">Заявка отправлена!</p>
         <p className={`text-sm mt-1 ${dark ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
-          Я свяжусь с вами в ближайшее время
+          Свяжусь с вами в ближайшее время
         </p>
       </div>
     );
@@ -184,7 +184,7 @@ const ContactForm = ({ dark = false }: { dark?: boolean }) => {
       <input
         name="phone"
         required
-        placeholder="Телефон или Telegram"
+        placeholder="Ваш телефон или Telegram"
         className={`flex-1 px-4 py-3 rounded-xl text-sm border outline-none focus:ring-2 focus:ring-primary ${
           dark
             ? "bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
@@ -194,7 +194,7 @@ const ContactForm = ({ dark = false }: { dark?: boolean }) => {
       <button
         type="submit"
         disabled={loading}
-        className={`inline-flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-bold transition-opacity hover:opacity-90 disabled:opacity-60 ${
+        className={`inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl text-sm font-bold transition-opacity hover:opacity-90 disabled:opacity-60 ${
           dark
             ? "bg-primary-foreground text-foreground"
             : "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
@@ -223,11 +223,10 @@ const Index = () => {
             <span className="font-display font-bold text-lg">ПоступиВМГСУ</span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
-            <a href="#about" className="hover:text-foreground transition-colors">Обо мне</a>
-            <a href="#achievements" className="hover:text-foreground transition-colors">Достижения</a>
+            <a href="#why" className="hover:text-foreground transition-colors">Зачем это нужно</a>
+            <a href="#about" className="hover:text-foreground transition-colors">Кто помогает</a>
             <a href="#university" className="hover:text-foreground transition-colors">О МГСУ</a>
-            <a href="#services" className="hover:text-foreground transition-colors">Услуги</a>
-            
+            <a href="#services" className="hover:text-foreground transition-colors">Тарифы</a>
           </div>
           <a
             href="#contact"
@@ -238,33 +237,33 @@ const Index = () => {
         </div>
       </motion.nav>
 
-      {/* Hero — 100vh */}
+      {/* Hero — обращение к маме */}
       <section className="min-h-screen flex items-center pt-20 pb-20 px-5">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center w-full">
           <div>
             <motion.div
               custom={0} variants={fadeUp} initial="hidden" animate="visible"
-              className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6"
+              className="inline-flex items-center gap-2 bg-destructive/10 text-destructive px-4 py-2 rounded-full text-sm font-semibold mb-6"
             >
-              <Star className="w-4 h-4" />
-              290 баллов ЕГЭ · Выбор между ВШЭ, ФА и МГСУ
+              <AlertTriangle className="w-4 h-4" />
+              87% родителей узнают об ошибках слишком поздно
             </motion.div>
             <motion.h1
               custom={1} variants={fadeUp} initial="hidden" animate="visible"
-              className="font-display text-3xl md:text-4xl lg:text-[3.2rem] font-extrabold leading-[1.25] mb-6"
+              className="font-display text-3xl md:text-4xl lg:text-[3.2rem] font-extrabold leading-[1.15] mb-6"
             >
-              Поступи в{" "}
+              Ваш ребёнок{" "}
               <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--gradient-hero)" }}>
-                МГСУ
+                поступит в МГСУ
               </span>
-              {" "}без ошибок — консультация от студента с 290 баллами
+              {" "}— без стресса и потерянных нервов
             </motion.h1>
             <motion.p
               custom={2} variants={fadeUp} initial="hidden" animate="visible"
               className="text-muted-foreground text-lg leading-relaxed max-w-lg mb-8"
             >
-              Расскажу как студент 3-го курса с 290 баллами ЕГЭ и осознанным выбором
-              МГСУ вместо ВШЭ и Финансовой академии при Президенте.
+              Студент 3-го курса МГСУ с <strong className="text-foreground">290 баллами ЕГЭ</strong> лично проведёт 
+              вас через все подводные камни приёмной кампании — чтобы вы были спокойны за будущее своего ребёнка.
             </motion.p>
             <motion.div
               custom={3} variants={fadeUp} initial="hidden" animate="visible"
@@ -274,7 +273,7 @@ const Index = () => {
                 href="#contact"
                 className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-7 py-3.5 rounded-xl text-sm font-bold hover:opacity-90 transition-opacity shadow-lg shadow-primary/25"
               >
-                Оставить заявку
+                Записаться на консультацию
                 <ArrowRight className="w-4 h-4" />
               </a>
               <a
@@ -293,10 +292,10 @@ const Index = () => {
               className="flex items-center gap-6 mt-10 text-sm text-muted-foreground"
             >
               <span className="flex items-center gap-1.5">
-                <CheckCircle className="w-4 h-4 text-accent" /> 50+ поступивших
+                <Heart className="w-4 h-4 text-destructive" /> 50+ семей уже обратились
               </span>
               <span className="flex items-center gap-1.5">
-                <CheckCircle className="w-4 h-4 text-accent" /> 3 курс МГСУ
+                <ShieldCheck className="w-4 h-4 text-accent" /> Гарантия честности
               </span>
             </motion.div>
           </div>
@@ -311,7 +310,7 @@ const Index = () => {
               <div className="absolute -inset-4 rounded-3xl opacity-20" style={{ backgroundImage: "var(--gradient-hero)" }} />
               <img
                 src={aznaurHero}
-                alt="Азнаур Гамзатов"
+                alt="Азнаур Гамзатов — консультант по поступлению"
                 className="relative w-full max-w-md rounded-2xl object-cover shadow-2xl"
               />
             </div>
@@ -319,7 +318,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Quick Summary — What I Offer */}
+      {/* Empathy block — понимаю вашу тревогу */}
       <section className="py-16 md:py-20 px-5 bg-card border-b border-border">
         <div className="max-w-4xl mx-auto">
           <motion.div
@@ -329,32 +328,32 @@ const Index = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-10"
           >
-            <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">О консультации</p>
+            <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">Для родителей</p>
             <h2 className="font-display text-2xl md:text-3xl font-bold mb-4">
-              Всё, что нужно знать о поступлении — за одну встречу
+              Вы делаете всё ради ребёнка. Но поступление — это минное поле
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Я — Азнаур Гамзатов, студент 3-го курса МГСУ. Сдал ЕГЭ на 290 баллов, прошёл в ВШЭ и Финансовую академию — 
-              но сознательно выбрал МГСУ. Теперь помогаю абитуриентам избежать ошибок, которые стоят нервов и года жизни.
+              Вы изучаете сайты вузов, читаете форумы, спрашиваете знакомых. Но информации так много, 
+              что легко запутаться. А ошибка стоит слишком дорого — год жизни и сотни тысяч за платное обучение.
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
             {[
               {
+                icon: HandHeart,
+                title: "Без лишнего стресса",
+                text: "Я возьму на себя всю сложную часть: стратегия, документы, сроки. Вам останется только спокойно ждать результат.",
+              },
+              {
+                icon: ShieldCheck,
+                title: "Проверенная информация",
+                text: "Никаких слухов и устаревших данных. Только актуальные проходные баллы, правила и реальный опыт студента МГСУ.",
+              },
+              {
                 icon: Target,
-                title: "Персональная стратегия",
-                text: "Разберу вашу ситуацию — баллы, направление, конкурс — и составлю пошаговый план поступления",
-              },
-              {
-                icon: AlertTriangle,
-                title: "Подводные камни",
-                text: "Ошибки в заявлениях, нюансы с аттестатами, разница между факультетами — предупрежу обо всём",
-              },
-              {
-                icon: Shield,
-                title: "Инсайды изнутри",
-                text: "Знаю МГСУ как студент: реальные проходные, общежития, преподаватели — то, чего нет в буклетах",
+                title: "Персональный план",
+                text: "Разберу ситуацию именно вашего ребёнка — баллы, предметы, сильные стороны — и составлю пошаговый план.",
               },
             ].map((item, i) => (
               <motion.div
@@ -395,82 +394,21 @@ const Index = () => {
       {/* Quiz */}
       <AdmissionQuiz university="mgsu" />
 
-      {/* About */}
-      <section id="about" className="py-20 px-5 bg-card">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <img
-              src={aznaur2}
-              alt="Азнаур Гамзатов"
-              loading="lazy"
-              className="rounded-2xl object-cover w-full max-w-sm mx-auto shadow-xl"
-            />
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">Обо мне</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">Азнаур Гамзатов</h2>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>
-                Меня зовут Азнаур Гамзатов, я студент 3-го курса{" "}
-                <strong className="text-foreground">Московского государственного строительного университета (МГСУ)</strong>,
-                факультет ИЭУКСН.
-              </p>
-              <p>
-                Три года назад я сдал ЕГЭ на <strong className="text-foreground">290 баллов</strong> и поступил.
-                Но самое интересное не это. У меня был реальный выбор: меня приняли в{" "}
-                <strong className="text-foreground">Высшую школу экономики</strong> и в{" "}
-                <strong className="text-foreground">Финансовую академию при Президенте</strong>.
-                И я сознательно выбрал МГСУ.
-              </p>
-              <p>
-                Сейчас я хорошо знаю университет изнутри. У нас очень много факультетов,
-                и каждый отличается своей спецификой. Я лично знаком с ребятами с разных факультетов,
-                поэтому понимаю, где реально низкий проходной балл, а где — неочевидные сложности.
-              </p>
-            </div>
-            <div className="flex gap-8 mt-8">
-              <div>
-                <div className="font-display font-extrabold text-2xl text-primary">290</div>
-                <div className="text-xs text-muted-foreground mt-1">Баллов ЕГЭ</div>
-              </div>
-              <div>
-                <div className="font-display font-extrabold text-2xl text-primary">3-й</div>
-                <div className="text-xs text-muted-foreground mt-1">Курс МГСУ</div>
-              </div>
-              <div>
-                <div className="font-display font-extrabold text-2xl text-primary">50+</div>
-                <div className="text-xs text-muted-foreground mt-1">Поступивших</div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-
-      <section className="py-20 px-5">
+      {/* Dangers — what can go wrong */}
+      <section id="why" className="py-20 px-5">
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-14">
-            <p className="text-destructive font-semibold text-sm mb-2 tracking-wide uppercase">Внимание</p>
+            <p className="text-destructive font-semibold text-sm mb-2 tracking-wide uppercase">Важно знать</p>
             <h2 className="font-display text-3xl md:text-4xl font-bold">
-              «Опасности» поступления, о которых не говорят
+              Ошибки, из-за которых дети теряют бюджетные места
             </h2>
             <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
-              На первый взгляд поступление в МГСУ может показаться простым. Но это обманчиво.
-              Есть нюансы, которые обязательно изучить до подачи документов.
+              Каждый год сотни семей приходят ко мне после того, как уже совершили эти ошибки. 
+              Не повторяйте их — предупредите проблему заранее.
             </p>
           </motion.div>
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
-            {dangers.map((d, i) => (
+            {parentWorries.map((d, i) => (
               <motion.div
                 key={d.title}
                 custom={i}
@@ -491,15 +429,18 @@ const Index = () => {
         </div>
       </section>
 
-      {/* What you get */}
+      {/* What parents get */}
       <section className="py-20 px-5 bg-card">
         <div className="max-w-4xl mx-auto">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-14">
             <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">Результат</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold">Что вы получите на консультации</h2>
+            <h2 className="font-display text-3xl md:text-4xl font-bold">Что вы получите как родитель</h2>
+            <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
+              После консультации вы будете точно знать, что делать — шаг за шагом
+            </p>
           </motion.div>
           <div className="space-y-5">
-            {whatYouGet.map((item, i) => (
+            {whatParentsGet.map((item, i) => (
               <motion.div
                 key={i}
                 custom={i}
@@ -530,24 +471,83 @@ const Index = () => {
           style={{ backgroundImage: "var(--gradient-hero)" }}
         >
           <h2 className="font-display text-2xl md:text-3xl font-bold mb-3">
-            Не откладывай поступление на потом
+            Не оставляйте поступление ребёнка на самотёк
           </h2>
           <p className="text-primary-foreground/80 mb-8 max-w-md mx-auto text-sm">
-            Оставь заявку сейчас — и я помогу тебе избежать ошибок, которые совершают 90% абитуриентов
+            Одна консультация за 3 490 ₽ — и вы будете уверены, что всё сделано правильно. 
+            Это дешевле, чем год на платном из-за потерянного бюджетного места.
           </p>
           <ContactForm dark />
         </motion.div>
       </section>
 
+      {/* About — кто помогает */}
+      <section id="about" className="py-20 px-5 bg-card">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+            <img
+              src={aznaur2}
+              alt="Азнаур Гамзатов"
+              loading="lazy"
+              className="rounded-2xl object-cover w-full max-w-sm mx-auto shadow-xl"
+            />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+            <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">Кто помогает вашему ребёнку</p>
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">Азнаур Гамзатов</h2>
+            <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <p>
+                Студент 3-го курса{" "}
+                <strong className="text-foreground">Московского государственного строительного университета (МГСУ)</strong>,
+                факультет ИЭУКСН. Сдал ЕГЭ на <strong className="text-foreground">290 баллов</strong>.
+              </p>
+              <p>
+                Поступил в <strong className="text-foreground">Высшую школу экономики</strong> и{" "}
+                <strong className="text-foreground">Финансовую академию при Президенте</strong> — 
+                но сознательно выбрал МГСУ. Знает процесс поступления от первого лица.
+              </p>
+              <p>
+                Уже помог <strong className="text-foreground">50+ семьям</strong> пройти приёмную кампанию без ошибок. 
+                Понимает тревоги родителей и говорит на понятном языке — без бюрократического жаргона.
+              </p>
+            </div>
+            <div className="flex gap-8 mt-8">
+              <div>
+                <div className="font-display font-extrabold text-2xl text-primary">290</div>
+                <div className="text-xs text-muted-foreground mt-1">Баллов ЕГЭ</div>
+              </div>
+              <div>
+                <div className="font-display font-extrabold text-2xl text-primary">50+</div>
+                <div className="text-xs text-muted-foreground mt-1">Семей обратились</div>
+              </div>
+              <div>
+                <div className="font-display font-extrabold text-2xl text-primary">0</div>
+                <div className="text-xs text-muted-foreground mt-1">Потерянных мест</div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* About University */}
-      <section id="university" className="py-20 px-5 bg-card">
+      <section id="university" className="py-20 px-5">
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-14">
             <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">Университет</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold">НИУ МГСУ — главный строительный вуз страны</h2>
+            <h2 className="font-display text-3xl md:text-4xl font-bold">Куда поступит ваш ребёнок</h2>
             <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
-              Московский государственный строительный университет — один из ведущих технических вузов России
-              с более чем 100-летней историей
+              НИУ МГСУ — один из ведущих технических вузов России с более чем 100-летней историей. 
+              Здесь дают профессию, которая всегда востребована.
             </p>
           </motion.div>
 
@@ -575,11 +575,11 @@ const Index = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               { icon: Building2, title: "Топ-5 технических вузов", desc: "МГСУ стабильно входит в пятёрку лучших инженерных университетов России" },
-              { icon: Award, title: "100+ лет истории", desc: "Основан в 1921 году. За это время подготовлены десятки тысяч инженеров" },
-              { icon: MapPin, title: "Кампус в Москве", desc: "Современный кампус с лабораториями, спортивными комплексами и общежитиями" },
-              { icon: Users, title: "20 000+ студентов", desc: "Одно из крупнейших сообществ будущих строителей, архитекторов и инженеров" },
-              { icon: BookOpen, title: "30+ направлений", desc: "От строительства до IT, экологии, архитектуры и управления недвижимостью" },
-              { icon: Target, title: "95% трудоустройство", desc: "Выпускники востребованы в крупных строительных компаниях и госструктурах" },
+              { icon: Award, title: "100+ лет истории", desc: "Основан в 1921 году. Проверенное качество образования для вашего ребёнка" },
+              { icon: MapPin, title: "Кампус в Москве", desc: "Современный кампус с общежитиями, охраной и всей инфраструктурой для студентов" },
+              { icon: Users, title: "20 000+ студентов", desc: "Крупное сообщество — ваш ребёнок найдёт друзей и единомышленников" },
+              { icon: BookOpen, title: "30+ направлений", desc: "От строительства до IT, экологии, архитектуры и управления — есть из чего выбрать" },
+              { icon: Target, title: "95% трудоустройство", desc: "Выпускники востребованы — вы будете спокойны за карьеру ребёнка" },
             ].map((item, i) => (
               <motion.div
                 key={item.title}
@@ -588,7 +588,7 @@ const Index = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="bg-background border border-border rounded-2xl p-6 hover:border-primary/30 transition-colors"
+                className="bg-card border border-border rounded-2xl p-6 hover:border-primary/30 transition-colors"
               >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                   <item.icon className="w-6 h-6 text-primary" />
@@ -602,13 +602,13 @@ const Index = () => {
       </section>
 
       {/* Services / Pricing */}
-      <section id="services" className="py-20 px-5">
+      <section id="services" className="py-20 px-5 bg-card">
         <div className="max-w-5xl mx-auto">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-14">
             <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">Тарифы</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold">Выбери свой формат</h2>
+            <h2 className="font-display text-3xl md:text-4xl font-bold">Инвестиция в будущее ребёнка</h2>
             <p className="text-muted-foreground mt-3 max-w-lg mx-auto">
-              Два варианта помощи — от полного сопровождения до VIP-менторства
+              3 490 ₽ за консультацию — это в 100 раз дешевле, чем год на платном отделении
             </p>
           </motion.div>
 
@@ -623,13 +623,13 @@ const Index = () => {
                 viewport={{ once: true }}
                 className={`relative rounded-2xl p-7 border flex flex-col ${
                   plan.popular
-                    ? "border-primary shadow-xl shadow-primary/10 bg-card"
-                    : "border-border bg-card"
+                    ? "border-primary shadow-xl shadow-primary/10 bg-background"
+                    : "border-border bg-background"
                 }`}
               >
                 {plan.popular && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-bold px-4 py-1.5 rounded-full">
-                    Популярный
+                    Выбор большинства
                   </div>
                 )}
                 <h3 className="font-display font-bold text-xl mb-1">{plan.title}</h3>
@@ -651,7 +651,7 @@ const Index = () => {
                       : "bg-secondary text-secondary-foreground"
                   }`}
                 >
-                  Выбрать
+                  Записаться
                 </a>
               </motion.div>
             ))}
@@ -663,10 +663,10 @@ const Index = () => {
       <section id="achievements" className="py-20 px-5">
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-14">
-            <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">Подтверждено</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold">Мои достижения</h2>
+            <p className="text-primary font-semibold text-sm mb-2 tracking-wide uppercase">Подтверждено документами</p>
+            <h2 className="font-display text-3xl md:text-4xl font-bold">Почему нам можно доверять</h2>
             <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
-              Результаты, которые подтверждают мою экспертизу — от аттестата с отличием до научных публикаций и практик в крупнейших организациях
+              Реальные документы, подтверждающие квалификацию — от аттестата с отличием до рекомендаций от Банка России
             </p>
           </motion.div>
 
@@ -768,11 +768,11 @@ const Index = () => {
           style={{ backgroundImage: "var(--gradient-hero)" }}
         >
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-            Готов поступить в МГСУ?
+            Позаботьтесь о поступлении ребёнка сейчас
           </h2>
           <p className="text-primary-foreground/80 mb-4 max-w-md mx-auto">
-            Записывайтесь. Я расскажу вам то, что не пишут в официальных брошюрах
-            и о чём молчат на днях открытых дверей.
+            Приёмная кампания не ждёт. Оставьте заявку — и я расскажу вам всё, 
+            что не пишут в брошюрах и о чём молчат на днях открытых дверей.
           </p>
           <div className="mb-8">
             <a
