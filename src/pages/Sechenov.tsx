@@ -62,7 +62,7 @@ const whatYouGet = [
 const plans = [
   {
     title: "Полное сопровождение",
-    price: "5 000 ₽",
+    price: "3 490 ₽",
     description: "Индивидуальный план поступления от А до Я",
     features: [
       "Анализ ваших шансов на поступление",
